@@ -17,6 +17,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::view('home','homepage');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/eventupdate', 'EventController@index');
+Route::post('/addevent', 'EventController@store')->name('addevent'); //the name at behind is from form-action
+Route::get('/eventpage', 'EventController@display');
+
+
+
+
+
+
+
+
+
+
+
+
+
