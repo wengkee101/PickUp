@@ -17,22 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('home','homepage');
+//staff login
+Route::get('/stafflogin', 'HomeController@stafflogin');
 
 
-Route::get('/eventupdate', 'EventController@index');
-Route::post('/addevent', 'EventController@store')->name('addevent'); //the name at behind is from form-action
-Route::get('/eventpage', 'EventController@display');
-
-
-
-
-
-
-
-
-
-
-
-
-
+//for adding outlets
+Route::get('/outlets', 'OutletController@index');
+Route::get('/outlets/create', 'OutletController@create');
+Route::post('/outlets/store', 'OutletController@store')->name('addOutlet');
+Route::get('/outlets/{id}', 'OutletController@show');
+Route::get('/outlets/{id}/edit', 'OutletController@edit');
+Route::post('/outlets/{id}', 'OutletController@update')->name('editOutlet');
+Route::get('/outlets/{id}/delete', 'OutletController@destroy')->name('deleteOutlet');

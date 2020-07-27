@@ -3,7 +3,7 @@
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
- * Copyright 2011-2020 Twitter, Inc.
+ * Copyright 2011-2020 Twitter, Inc
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
@@ -72,7 +72,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-image: #f8fafc;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10927,4 +10927,9 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+
+
+
+
 
