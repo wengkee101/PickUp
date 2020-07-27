@@ -1,7 +1,0 @@
-<html>
-
-<?php
-	echo '<p> Initial coding for php </p>';
-?>
-
-</html>
