@@ -1,0 +1,44 @@
+body{
+    margin-top: 2rem;
+}
+
+.container{
+    color: green;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+footer{
+    background-color: rgb(202, 199, 199);
+    text-align: center;
+}
+#picture{
+    text-align: center;
+}
+.content-group{
+    margin-bottom: 20px;
+}
+.input-group{
+    margin-bottom: 20px;
+}
+
+.pic{
+    text-align: center;
+}
+
+.content{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#leftcolumn{
+    color: greenyellow;
+}
+
+#rightcolumn{
+    color: hotpink;
+}
+
+.cm {
+    margin-top: 20rem;
+}

@@ -1,4 +1,12 @@
-@extends('master')
+@extends('layouts.app')
+
+@section('style')
+<style>
+ .container{
+    background-color: white;
+ }
+</style>
+@endsection
 
 @section('content')
 
@@ -16,7 +24,7 @@
             <div class="form-group row">
                 <label for="contactid" class="col-sm-3 col-form-label">Contact Number</label>
                 <div class="col-sm-9">
-                    <input name="contact" type="text" class="form-control" id="contactid" placeholder="Contact Number">
+                    <input name="contact" type="text" class="form-control" id="contactid" placeholder="Contact Number (min 10)">
                 </div>
             </div>
             <div class="form-group row">

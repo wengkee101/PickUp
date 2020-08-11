@@ -2,116 +2,152 @@
 /*website*/
 
 .topnav {
-    background-color: #333;
-    overflow: hidden;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  }
-  
-  /* Change the color of links on hover */
-  .topnav a:hover {
-  background-color: #ddd;
-  color: black;
-  }
-  
-  /* Add a color to the active/current link */
-  .topnav a.active {
-  background-color: #f2d600;
-  color: black;
-  }
-  
-  /* Right-aligned section inside the top navigation */
-  .topnav-right {
-  float: right;
-  }
-  
-  
-  #deleteBtn{
-    display:inline;
-  }
-  
-
-  #logohome{
-    width:400px;
-    height:auto;
-    position: absolute;
-      left:50%;
-    transform:translate(-50%);
-  }
-
-  .boxie{
-    /*background-color: #faf3c0;*/
-    background-color: white;
-    position:absolute;
-    top:64%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    width:400px;
-    height:auto;
-    padding:45px 50px;
-    align-items: center;
-    text-align: center;
-    border:none;
-    border-radius: 20px;
-  }
-  
-  .boxie input{
-    margin:10px;
-    border-radius: 10px;
-    width:250px;
-    height:35px;
-    text-align: center;
-    background-color: #e5e5e5;
-    font-size:20px;
-    border-style:dashed;
-  }
-  
-  .boxie button{
-    margin:10px;
-    border:none;
-    margin-top:25px;
-    border-radius: 10px;
-    width:150px;
-    height:35px;
-    background-color: #f5dd29;
-    font-size:20px;
-  }
-  
-  .boxie button:hover{
-    width:250px;
-    background-color: blue;
-    transition:0.3s;
-    background-color: #e6c60d;
-  }
-  
-  .boxie h1{
-    text-transform: uppercase;
-    letter-spacing:8px;
-    font-size: 48px;
-  }
-  
-  #logohome{
-    width:400px;
-    height:auto;
-    position: absolute;
-    left:50%;
-    transform:translate(-50%);
-  }
-  
-  .boxie a{
-    text-decoration: underline;
-  }
-
-  body{
-    background-image: url('img/waiter.jpg');
-    background-repeat: no-repeat;
-    background-size: 1700px 800px;
+  background-color: #333;
+  overflow: hidden;
 }
+
+/* Style the links inside the navigation bar */
+.topnav a {
+float: left;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+background-color: #ddd;
+color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+background-color: #f2d600;
+color: black;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+float: right;
+}
+
+
+#deleteBtn{
+  display:inline;
+}
+
+
+#logohome{
+  width:400px;
+  height:auto;
+  position: absolute;
+    left:50%;
+  transform:translate(-50%);
+}
+
+.boxie{
+  /*background-color: #faf3c0;*/
+  background-color: white;
+  position:absolute;
+  top:64%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:400px;
+  height:auto;
+  padding:45px 50px;
+  align-items: center;
+  text-align: center;
+  border:none;
+  border-radius: 20px;
+}
+
+.boxie input{
+  margin:10px;
+  border-radius: 10px;
+  width:250px;
+  height:35px;
+  text-align: center;
+  background-color: #e5e5e5;
+  font-size:20px;
+  border-style:dashed;
+}
+
+.boxie button{
+  margin:10px;
+  border:none;
+  margin-top:25px;
+  border-radius: 10px;
+  width:150px;
+  height:35px;
+  background-color: #f5dd29;
+  font-size:20px;
+}
+
+.boxie button:hover{
+  width:250px;
+  background-color: blue;
+  transition:0.3s;
+  background-color: #e6c60d;
+}
+
+.boxie h1{
+  text-transform: uppercase;
+  letter-spacing:8px;
+  font-size: 48px;
+}
+
+#logohome{
+  width:400px;
+  height:auto;
+  position: absolute;
+  left:50%;
+  transform:translate(-50%);
+}
+
+.boxie a{
+  text-decoration: underline;
+}
+
+body{
+  background-image: url('img/waiter.jpg');
+  background-repeat: no-repeat;
+  background-size: 1700px 800px;
+}
+
+
+.dropbtn {
+background-color: #4CAF50;
+color: white;
+padding: 16px;
+font-size: 16px;
+border: none;
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}

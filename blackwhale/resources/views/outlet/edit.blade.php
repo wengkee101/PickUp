@@ -1,4 +1,12 @@
-@extends('master')
+@extends('layouts.app')
+
+@section('style')
+<style>
+ .container{
+    background-color: white;
+ }
+</style>
+@endsection
 
 @section('content')
     <div class="container pt-5">
