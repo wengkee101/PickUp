@@ -297,6 +297,10 @@
 @include('inc.usernav')
 @include('sweetalert::alert')
 
+<div id="app">
+  @yield('contentcust')
+</div>
+
 <div class="fixed">
   @yield('content')
 </div>
@@ -305,6 +309,7 @@
   @yield('contentcm')
 </div>
 
+<script type="application/javascript" src="{{asset('js/app.js')}}" defer></script>
 
 </body>
 

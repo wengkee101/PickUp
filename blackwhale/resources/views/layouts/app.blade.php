@@ -34,7 +34,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap%27');
         
        body{
-            background-image: url('/img/bg.png');
+            background-image: url('/image/Background1.png');
             background-repeat:repeat-y;
             background-size: 1800px 1200px;
         }
@@ -133,7 +133,7 @@
                 
             @else
                     <a href="/staffhome">HOME</a>
-                    <a href="#">USER ORDERS</a>
+                    <a href="/orders">USER ORDERS</a>
                     <a href="/teas">EDIT MENU</a>
                     <a href="/outlets">ADD OUTLET</a>
                     <a href="/eventupdate">EVENT UPDATES</a>

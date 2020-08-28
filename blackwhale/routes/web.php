@@ -20,7 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
+Route::get('/cust', function () {
+    return view('customer.viewmenu');
+});
+
+Route::get('/checkout', function () {
+    return view('customer.checkout');
+});
+
+Route::get('/homepage', function () {
     return view('homepage');
 });
 
@@ -48,6 +56,7 @@ Route::get('/eventpage', 'EventController@display');
 Route::get('/franchise', 'FranchiseController@index');
 Route::post('/addform', 'FranchiseController@store')->name('addform');
 Route::get('/franchise_page', 'FranchiseController@display');
+Route::any('/franchisesearch', 'FranchiseController@userSearch');
 
 //for adding outlets
 Route::get('/outlets', 'OutletController@index');
@@ -75,4 +84,11 @@ Route::get('teasss', 'TeaSerController@sss');
 
 //view Help Center                  - function:     Testing:    UI Design:   Complete:
 
+//authentication and staff
 Auth::routes();
+Auth::routes();
+Route::get('/orders', 'OrderController@index');
+Route::get('/order/{id}', 'OrderController@show');
+Route::get('/custDetails', 'OrderController@custIndex');
+
+Route::get('/home', 'HomeController@index')->name('home');

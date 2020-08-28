@@ -45,7 +45,8 @@ class TeaCatController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            toast($validator->messages()->all()[0], 'error');
+            return back();
         }
 
         //store data
@@ -55,7 +56,7 @@ class TeaCatController extends Controller
         if($request->hasfile('image')) {
 
             $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('upload/eventupdate', $filename, 'public');
+            $request->image->storeAs('upload/menu', $filename, 'public');
 
             $teacategory->image = $filename;
         }else{
@@ -65,7 +66,8 @@ class TeaCatController extends Controller
 
         $teacategory->save();
     
-        return redirect('/teas')->withSuccess('Created Successfully!');
+        alert('Created Success', 'New things appeared!','success');
+        return redirect('/teas');
     }
 
     /**
@@ -104,11 +106,11 @@ class TeaCatController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'image' => 'mimes:jpeg,jpg,png,gif,psd|required',
         ]);
 
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            toast($validator->messages()->all()[0], 'error');
+            return back();
         }
 
         $teacategory = TeaCat::find($id);
@@ -118,14 +120,15 @@ class TeaCatController extends Controller
         if($request->hasfile('image')) {
 
             $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('/img', $filename, 'public');
+            $request->image->storeAs('upload/menu', $filename, 'public');
 
             $teacategory->image = $filename;
         }
 
         $teacategory->save();
     
-        return redirect('/teas')->withSuccess('Edited Successfully!');
+        alert('Edited Success', $teacategory->name." edited", 'success');
+        return redirect('/teas');
     }
 
     /**

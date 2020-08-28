@@ -9,6 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Validator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+
 class TeaSerController extends Controller
 {
     /**
@@ -37,7 +38,8 @@ class TeaSerController extends Controller
     {
         $teaseries = TeaSer::all();
         $teacategories = TeaCat::all();
-        return view('teaser.create', compact('teacategories', 'teaseries'))->withSuccess('Created Successfully!');
+        return view('teaser.create', compact('teacategories', 'teaseries'));
+        
     }
 
     /**
@@ -46,18 +48,20 @@ class TeaSerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //validation
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'image' => 'mimes:jpeg,jpg,png,gif,psd|required',
         ]);
 
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            toast($validator->messages()->all()[0], 'error');
+            return back();
         }
 
         //store data
@@ -71,7 +75,7 @@ class TeaSerController extends Controller
         if($request->hasfile('image')) {
 
             $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('upload/eventupdate', $filename, 'public');
+            $request->image->storeAs('upload/menu', $filename, 'public');
 
             $teaserie->image = $filename;
         }else{
@@ -80,8 +84,9 @@ class TeaSerController extends Controller
         }
 
         $teaserie->save();
-    
-        return redirect('/teaser')->withSuccess('Created Successfully!');
+
+        alert('Created Success', 'New things appeared!','success');
+        return redirect('/teas');
     }
 
     /**
@@ -122,17 +127,17 @@ class TeaSerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    { 
         //validation
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required',
-            'image' => 'mimes:jpeg,jpg,png,gif,psd|required',
+            'price' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            toast($validator->messages()->all()[0], 'error');
+            return back();
         }
 
         //update data
@@ -145,7 +150,7 @@ class TeaSerController extends Controller
         if($request->hasfile('image')) {
 
             $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('upload/eventupdate', $filename, 'public');
+            $request->image->storeAs('upload/menu', $filename, 'public');
 
             $teaserie->image = $filename;
         }
@@ -153,7 +158,8 @@ class TeaSerController extends Controller
         $teaserie->save();
     
         //return $teaserie;
-        return redirect('/teas')->withSuccess('Edited Successfully!');
+        alert('Edited Success', $teaserie->name." edited", 'success');
+        return redirect('/teas');
     }
 
     /**
@@ -163,11 +169,12 @@ class TeaSerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
         $teaserie = TeaSer::find($id);
         $teaserie->delete($teaserie->id);
         
         alert('Delete Success',$teaserie->name." deleted", 'success');
         return redirect('/teas');
     }
+
 }

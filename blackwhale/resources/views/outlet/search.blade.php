@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('style')
@@ -13,16 +12,16 @@
 
     <div class="container pt-5">
 
-        <h1>Outlet Locations</h1>
-        <button class="btn btn-lights btn-lg float-right"><a href="/outlets/create">Add Outlet</a></button>
-        <a href="/outlets" title="back to index table"><i class="fa fa-refresh btn btn-lights btn-lg float-right" style="font-size:24px;"> Refresh</i></a>
+        <h1 style = "margin-left:50px;">Outlet Locations</h1>
+        <button class="btn btn-primary float-right"><a style = "color: white;" href="/outlets/create">Add Outlet</a></button>
+        <a style = "color:white;" href="/outlets" title="back to index table"><i class="fa fa-refresh btn btn-info float-right margin-right:50px;" style="font-size:18px;"> Refresh</i></a>
         <br><br><br>
 
         <!--Search function-->
-        <h4>Search for City</h4>
+        <h4 style = "margin-left:50px;">Search for City</h4>
         <form action="/search" method="GET">
             {{ csrf_field() }}
-            <div class="input-group">
+            <div style = "margin-left:50px; width:91%;" class="input-group">
                 <input type="search" class="form-control" name="q" placeholder="Search anything"> 
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default">
@@ -60,9 +59,9 @@
                             <td>{{$outlet->address}}</td>
                             <td>{{$outlet->city}}</td>
                             <td>{{$outlet->postcode}}</td>
-                            <td><a href="/outlets/{{$outlet->id}}/edit" class="btn btn-warning btn-lg float-left" title="edit this outlet" >Edit</a></td>
+                            <td><a href="/outlets/{{$outlet->id}}/edit" class="btn btn-warning float-left" title="edit this outlet" >Edit</a></td>
                             <td>
-                                <a onclick="sweetalertclick('{{$outlet->name}}', '{{$outlet->id}}')" class="btn btn-danger btn-lg float-right" title="delete this outlet" id="deleteBtn">DELETE</a>
+                                <a onclick="sweetalertclick('{{$outlet->name}}', '{{$outlet->id}}')" class="btn btn-danger float-right" title="delete this outlet" id="deleteBtn">DELETE</a>
                             </td>
                         </tr>
                     @endforeach

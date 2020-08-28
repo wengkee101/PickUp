@@ -22,7 +22,6 @@ class CreateOutletsTable extends Migration
             $table->string('city');
             $table->integer('postcode');
             $table->timestamps();
-            $table->timestamps();
         });
     }
 

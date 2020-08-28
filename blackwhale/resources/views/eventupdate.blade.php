@@ -64,7 +64,7 @@
                 <!--image preview-->
                <img id="output" style="height: 40%; width: 70%; display:block; text-align: center; border-radius: 15px">
                
-                <button style="margin-top: 1rem" type="submit" name="submit" class="btn btn-primary">Save Data</button>
+                <button style="margin-top: 1rem" type="submit" name="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>

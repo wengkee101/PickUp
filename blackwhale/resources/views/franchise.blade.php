@@ -168,6 +168,14 @@
         height: auto;
     }
 
+    input{
+        margin-top: 15px;
+    }
+
+    select{
+        margin-top:15px;
+    }
+
 
 
 </style>
@@ -181,12 +189,13 @@
 
     <h1 style="margin-left: 170px">Franchise Opportunities Form</h1>
     <div class="jumbotron" style="padding-top:2rem; padding-left:4rem;">
+
     <form action="{{ route('addform') }}" method="POST" enctype="multipart/form-data">
 
             {{ csrf_field() }}
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" name="name" class="form-control" placeholder="Enter Name" >
+                <input type="text" name="name" class="form-control" placeholder="Full Name" >
                     @error('name')
                             <span style="color: red">{{$message}}</span>
                     @enderror
@@ -200,7 +209,7 @@
             </div>
             <div class="form-group">
                 <label for="">Phone Number</label>
-                <input type="text" name="phoneno" class="form-control" placeholder="+60-012 345 6789" >
+                <input type="text" name="phoneno" class="form-control" placeholder="+60-12 345 6789">
                     @error('phoneno')
                             <span style="color: red">{{$message}}</span>
                     @enderror
@@ -214,7 +223,7 @@
             </div>
             <div class="form-group">
                 <label for="">Do you have any F&B Experience</label>
-                <select class="form-control" name="FoodAndBeverage_Experience" id="" >
+                <select style = "width:92.5%;" class="form-control" name="FoodAndBeverage_Experience" id="" >
                     <option value="">Choose an Option</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -225,7 +234,7 @@
             </div>
             <div class="form-group">
                 <label for="">Is your First Franchise?</label>
-                <select class="form-control" name="First_Franchise" id="">
+                <select style = "width:92.5%;" class="form-control" name="First_Franchise" id="">
                     <option value="">Choose an Option</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -237,14 +246,15 @@
 
             <div class="content-group">
                 <label>Message</label>
-                <textarea class="form-control" name="Message" id cols="10" rows="10" placeholder="Message"></textarea>
+                <textarea style = "margin-top:15px;" class="form-control" name="Message" id cols="10" rows="10" placeholder="Message"></textarea>
                     @error('Message')
                             <span style="color: red">{{$message}}</span>
                     @enderror
             </div>
-            <hr>
+
+            <hr style = "margin-top: 15px;">
             
-            <button type="submit" name="submit" class="btn btn-primary">Save Data</button>
+            <button style = "margin-top: 15px;" type="submit" name="submit" class="btn btn-primary">Submit Form</button>
     
         </form>
     </div>

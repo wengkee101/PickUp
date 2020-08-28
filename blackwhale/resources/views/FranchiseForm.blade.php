@@ -29,7 +29,24 @@
 @section('contentcm')
 
 <h1>Franchise Opportunities Form</h1>
-    <div class="cm">  
+
+    <!--Search function-->
+    <h4 style = "margin-top:50px;">Search for City</h4>
+    <form action="/franchisesearch" method="GET">
+        {{ csrf_field() }}
+        <div style = "margin-top:15px; width:100%;" class="input-group">
+            <input type="search" class="form-control" name="q" placeholder="Search anything"> 
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </form>
+    <br><br>
+    
+    <div class="cm"> 
+    
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -56,6 +73,10 @@
             </tbody>
             @endforeach
         </table>
+    </div>
+
+    <div class="pagination" style="margin-left: 58px; margin-top: -1rem;">
+        {{$franchises->links()}}
     </div>
 
 @endsection

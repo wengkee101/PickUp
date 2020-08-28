@@ -10,6 +10,13 @@
             padding:  50px 120px 20px 120px;
         }
 
+        .custom-file {
+            width: 72%;
+            margin-left:15px;
+            min-width: 0;
+            margin-bottom: 0;
+        }
+
         .head{
             text-align: center;
             padding-bottom:20px;
@@ -22,7 +29,9 @@
 
 <div class="container">
     <br>
-    <h2 class="head">Edit Menu Series</h2>
+    <a href="/teas" class="btn btn-light mb-5">Go Back</a>
+    
+    <h2  style="color:white;" class="head">Edit Menu Series</h2>
     
     <div class="form-container jumbotron">
         
@@ -42,14 +51,17 @@
             </div>
 
             <br>
+
             <div class="form-group row">
                 <label for="photos" class="col-sm-3 col-form-label">Image Upload</label>
-                <div class="col-sm-9">
-                    <input type="file" class="form-control" id="photos" name="image" onchange="loadFile(event)">
+                <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" >
+                    <label class="custom-file-label">Choose file</label>
                 </div>
             </div>
+            
             <!--image preview-->
-            <img id="output" src="/img/{{$teaserie->image}}" style="height: 100px; width: 100px; display:block;">
+            <img id="output" src="{{asset('/storage/upload\menu/'. $teaserie->image)}}" style=" margin-left: 255px; height: 30%; width: 30%; display:block; text-align: center; border-radius: 15px">
 
             <br><br>
             <div class="form-group row">
@@ -58,13 +70,28 @@
                     <textarea name="description" type="text" class="form-control" id="descriptionid" placeholder="Description" rows="5" cols="50">{{$teaserie->description}}</textarea>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="priceid" class="col-sm-3 col-form-label">Price (RM)</label>
-                <div class="col-sm-9">
+                <div class="col-xs-2">
                     <input name="price" type="text" class="form-control" id="priceid" placeholder="Price" value="{{number_format($teaserie->price, 2)}}">
                 </div>
             </div>
             <br>
+
+            <div class="form-group row">
+                <label for="rateid" class="col-sm-3 col-form-label">Rating</label>
+                <div class="col-xs-2">
+                    <input name="rate" type="number" class="form-control" id="rateid" placeholder="Rating" value="{{$teaserie->rate}}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="quantityid" class="col-sm-3 col-form-label">Quantity</label>
+                <div class="col-xs-2">
+                    <input name="quantity" type="number" class="form-control" id="quantityid" placeholder="Quantity" value="{{$teaserie->quantity}}">
+                </div>
+            </div>
             <div class="form-group row">
                 <div class="offset-sm-3 col-sm-9">
                     <input name="_method" type="hidden" value="POST">
@@ -77,8 +104,8 @@
 
     <script>
         var loadFile = function(event){
-            var output = document.getElementById('output');
-            output.src = URL.createObjectURL(event.target.files[0]);
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0])
         }
     </script>
 

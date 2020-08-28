@@ -12,7 +12,7 @@
     <div class="container pt-5">
         <h2>Edit Outlet</h2>
         
-        <form method="post" action="{{route('editOutlet',[$outlet->id])}}" enctype="multipart/form-data">
+        <form style = "margin-top: 3s5px;" method="post" action="{{route('editOutlet',[$outlet->id])}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group row">
                 <label for="nameid" class="col-sm-3 col-form-label">Name</label>
@@ -61,9 +61,10 @@
             <div class="form-group row">
                 <div class="offset-sm-3 col-sm-9">
                     <input name="_method" type="hidden" value="POST">
-                    <button type="submit" class="btn btn-success btn-lg float-right">Confirm Edit</button>
+                    <button type="submit" class="btn btn-success float-right">Save Edit</button>
                 </div>
             </div>
         </form>
+
     </div>
 @endsection

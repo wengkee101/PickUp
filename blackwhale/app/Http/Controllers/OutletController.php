@@ -5,12 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Outlet;
+use App\Http\Resources\Outlet as OutletResource;
 use Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OutletController extends Controller
 {
+    public function rindex()
+    {
+        $outlets = Outlet::all();
+        return OutletResource::collection($outlets);
+    }
+
+    public function rshow($id)
+    {
+        $outlet = Outlet::find($id);
+        return new OutletResource($outlet);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +31,9 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $outlets =  Outlet::all();
+        $outlets = Outlet::orderBy('id', 'asc')
+        // Paginate the contents
+        ->paginate(4);
         return view('outlet.index')->with('outlets', $outlets);
         //return $outlets;
     }
@@ -52,7 +67,8 @@ class OutletController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            toast($validator->messages()->all()[0], 'error');
+            return back();
         }
 
         //store new data
@@ -67,8 +83,8 @@ class OutletController extends Controller
         
         $outlet->save();
 
-        return redirect('/outlets')->withSuccess('Created Successfully!');
- 
+        alert('Created Success', 'New things appeared!','success');
+        return redirect('/outlets');
     }
 
     /**
@@ -115,7 +131,8 @@ class OutletController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            toast($validator->messages()->all()[0], 'error');
+            return back();
         }
 
         //update data
@@ -130,7 +147,8 @@ class OutletController extends Controller
         
         $outlet->save();
         
-        return redirect('/outlets')->withSuccess('Edited Successfully!');
+        alert('Edited Success', $teaserie->name." edited", 'success');
+        return redirect('/outlets');
     }
 
     /**
@@ -145,6 +163,7 @@ class OutletController extends Controller
 
         $outlet->delete($outlet->id);
 
+        alert('Delete Success',$teaserie->name." deleted", 'success');
         return redirect('/outlets');
     }
 

@@ -43,5 +43,29 @@ class FranchiseController extends Controller
 
         return view('FranchiseForm')->with('franchises', $franchises);
     }
+
+    public function userSearch(Request $request)
+    {
+        if(!empty($request->input('q'))) {
+            $q = request('q');
+            
+            $franchises = Franchise2::where ( 'name', 'LIKE', '%' . $q . '%' )
+                    ->orWhere ( 'name', 'LIKE', '%' . $q . '%' )
+                    ->orWhere ( 'email', 'LIKE', '%' . $q . '%' )
+                    ->orWhere ( 'phoneno', 'LIKE', '%' . $q . '%' )
+                    ->orWhere ( 'location', 'LIKE', '%' . $q . '%' )
+                    ->orWhere ( 'Message', 'LIKE', '%' . $q . '%' )
+                    ->get ();
+        }
+        else 
+            return back()->withInfo("No input");  
+
+        if (count ( $franchises ) > 0)
+            return view ( 'franchisesearch' )->with('franchises', $franchises);
+            //return $outlet;
+        else
+            return back()->withInfo("No Results found!");
+            //return "result not found";
+    }
 }
 

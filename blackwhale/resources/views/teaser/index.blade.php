@@ -133,7 +133,7 @@
                     @foreach($teacategory->series as $teaserie)
                         <div class="teaproduct">
                             <a href="/teaser/{{$teaserie->id}}">{{$teaserie->name}}</a><br><br>
-                            <img src="{{ asset('/storage/upload\eventupdate/' . $teaserie->image) }}" alt="{{$teaserie->name}}" width="100px" height="100px"><br>
+                            <img src="{{ asset('/storage/upload\menu/' . $teaserie->image) }}" alt="{{$teaserie->name}}" width="100px" height="100px"><br>
                             <p>RM {{number_format($teaserie->price, 2)}}</p>
                         </div>
                     @endforeach

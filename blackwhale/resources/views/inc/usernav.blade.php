@@ -31,7 +31,7 @@
       </li>
       <!--HOME ICON-->
       <li class="nav-item">
-        <a href="/home" class="nav-link">
+        <a href="/homepage" class="nav-link">
           <svg
             aria-hidden="true"
             focusable="false"
@@ -89,7 +89,7 @@
       </li>
       <!--Tea Series ICON-->
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/cust" class="nav-link">
           <svg
             aria-hidden="true"
             focusable="false"
