@@ -90,19 +90,20 @@
                                 <div class="col-sm-6">
                                     <p><b>RM {{formatNumber(teaser.price)}}</b></p>
                                     <p><b>Ratings</b></p><i class="fa fa-star" v-for="rate in teaser.rate" style="font-size: 20px; color: #f9d71c;"></i><br><br>
-                                    <p><b>{{teaser.quantity}} unit(s) in stock</b></p>
+                                    <p><b>{{teaser.stock}} unit(s) in stock</b></p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <input type="number" v-model="itemquantity" 
-                                    min="0" :max="teaser.quantity" :key="index" 
-                                    style="width: 60px" class="mr-2" 
-                                    :class="{blur: !teaser.quantity}">unit(s)
-                            <button class="btn btn-info cart" 
-                                    :class="{disabled: !teaser.quantity}" 
-                                    :key="teaser.id"
-                                    @click="addToCart(teaser)">Add to Cart
+                            <p v-if="!teaser.stock"> We are out of stock </p>
+                            <p v-else-if="teaser.stock > 5 && teaser.stock < 10"> Hurry Up! </p>
+                            <p v-else-if="teaser.stock >= 10"> Fresh and Nice! </p>
+                            <span v-if ="teaser.stock">
+                                <input type="number" @input="save($event, teaser)"
+                                min ="0" :max="teaser.stock" :key="index" style="width: 60px;" class = "mr-2" value=0>unit(s)
+                            </span>
+                            <button class = "btn btn-info cart" :class="{disabled: !teaser.stock}" :key="teaser.id" @click="addToCart()">
+                                Add to Cart
                             </button>
                         </div>
                     </div>
@@ -123,18 +124,23 @@
                         <p>RM {{formatNumber(one.price)}}</p><br>
                         <h3>Ratings </h3><i class="fa fa-star" style="font-size: 40px; color: #f9d71c;" v-for="rate in one.rate"></i><br><br>
                         <h3>Quantity in Stock</h3>
-                        <p>{{one.quantity}} unit(s)</p><br>
+                        <p>{{one.stock}} unit(s)</p><br>
                         <button class="btn btn-info cart btn-lg" 
-                                :class="{disabled: !one.quantity}" 
+                                :class="{disabled: !one.stock}" 
                                 :key="teaser.id"
-                                @click="addToCart(one)">Add to Cart
+                                @click="addToCart()">Add to Cart
                         </button>
+
+                        <p v-if="!one.stock"><b> We are out of stock </b> </p>
+                        <p v-else-if="one.stock > 5 && one.stock < 10"><b> Hurry Up! </b></p>
+                        <p v-else-if="one.stock >= 10"><b> Fresh and Nice! </b></p>
+
                         <div class="form-group" style="width: 60px; font-size:24px;">
+                            <span v-if ="one.stock">
                             <label>Quantity</label>
-                            <input type="number" v-model="itemquantity" 
-                                min="0" :max="one.quantity" :key="one.id" 
-                                class="mr-2" 
-                                :class="{blur: !one.quantity}">
+                                <input type="number" @input="save($event, one)"
+                                min ="0" :max="one.stock" :key="one.id" style="width: 60px;" class = "mr-2" value=0>unit(s)
+                            </span>
                         </div>
                         
                         
@@ -172,8 +178,8 @@ export default{
                 image:'',
                 description:'',
                 price:'',
-                quantity:'',
-                rate:''
+                rate:'',
+                stock:''
             },
             teacatid:'0',
             carts:[],
@@ -184,7 +190,6 @@ export default{
                 amount:''
             },
             badge:'0',
-            itemquantity:'1',
             totalPrice:'0',
             one:[]
         }
@@ -236,18 +241,35 @@ export default{
                     return total + item.amount * item.price;
                 },0);
             }
-            console.log(this.carts);
-            console.log("Total Price: "+ this.totalPrice);
+            //console.log(this.carts);
+            //console.log("Total Price: "+ this.totalPrice);
         },
-        addToCart(teaser){
-            this.cartadd.id = teaser.id;
-            this.cartadd.name = teaser.name;
-            this.cartadd.price = teaser.price;
-            this.cartadd.amount = this.itemquantity;
-            this.carts.push(this.cartadd);
-            this.cartadd = {};
-            
-            this.storeCart();
+        save(event, teaser){
+            if(event.target.value == 0){
+                alert("Please enter quantity");
+            }
+            else{
+                this.cartadd.id = teaser.id;
+                this.cartadd.name = teaser.name;
+                this.cartadd.price = teaser.price;
+                this.cartadd.amount = event.target.value;
+            }
+        },
+        addToCart(cartadd){
+            if(this.cartadd.amount == null || this.cartadd.amount == 0){
+                alert("Please enter quantity");
+            }
+            else{
+                const index = this.carts.findIndex(i => i.name === this.cartadd.name);
+                if(index !== -1){
+                    this.carts.splice(index, 1, this.cartadd);
+                }
+                else{
+                    this.carts.push(this.cartadd);
+                }
+                this.cartadd = {};
+                this.storeCart();
+            }
         },
         storeCart(teaser){
             let parsed = JSON.stringify(this.carts);

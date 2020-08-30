@@ -20,7 +20,7 @@ class TeaSer extends JsonResource
             'name' => $this->name,
             'image' => $this->image,
             'description' => $this->description,
-            'quantity' => $this->quantity,
+            'stock' => $this->quantity,
             'price' => $this->price,
             'rate' => $this->rate
         ];

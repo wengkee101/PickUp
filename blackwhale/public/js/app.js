@@ -2062,6 +2062,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2081,8 +2087,8 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         description: '',
         price: '',
-        quantity: '',
-        rate: ''
+        rate: '',
+        stock: ''
       },
       teacatid: '0',
       carts: [],
@@ -2093,7 +2099,6 @@ __webpack_require__.r(__webpack_exports__);
         amount: ''
       },
       badge: '0',
-      itemquantity: '1',
       totalPrice: '0',
       one: []
     };
@@ -2151,19 +2156,39 @@ __webpack_require__.r(__webpack_exports__);
         this.totalPrice = this.carts.reduce(function (total, item) {
           return total + item.amount * item.price;
         }, 0);
-      }
+      } //console.log(this.carts);
+      //console.log("Total Price: "+ this.totalPrice);
 
-      console.log(this.carts);
-      console.log("Total Price: " + this.totalPrice);
     },
-    addToCart: function addToCart(teaser) {
-      this.cartadd.id = teaser.id;
-      this.cartadd.name = teaser.name;
-      this.cartadd.price = teaser.price;
-      this.cartadd.amount = this.itemquantity;
-      this.carts.push(this.cartadd);
-      this.cartadd = {};
-      this.storeCart();
+    save: function save(event, teaser) {
+      if (event.target.value == 0) {
+        alert("Please enter quantity");
+      } else {
+        this.cartadd.id = teaser.id;
+        this.cartadd.name = teaser.name;
+        this.cartadd.price = teaser.price;
+        this.cartadd.amount = event.target.value;
+      }
+    },
+    addToCart: function addToCart(cartadd) {
+      var _this4 = this;
+
+      if (this.cartadd.amount == null || this.cartadd.amount == 0) {
+        alert("Please enter quantity");
+      } else {
+        var index = this.carts.findIndex(function (i) {
+          return i.name === _this4.cartadd.name;
+        });
+
+        if (index !== -1) {
+          this.carts.splice(index, 1, this.cartadd);
+        } else {
+          this.carts.push(this.cartadd);
+        }
+
+        this.cartadd = {};
+        this.storeCart();
+      }
     },
     storeCart: function storeCart(teaser) {
       var parsed = JSON.stringify(this.carts);
@@ -2196,6 +2221,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2324,7 +2360,9 @@ __webpack_require__.r(__webpack_exports__);
       },
       cust_id: '',
       errors: [],
-      timestamp: ""
+      timestamp: "",
+      time: '',
+      date: ''
     };
   },
   created: function created() {
@@ -2333,6 +2371,12 @@ __webpack_require__.r(__webpack_exports__);
     setInterval(this.getNow, 1000);
   },
   methods: {
+    date_function: function date_function() {
+      var currentDate = new Date();
+      console.log(currentDate);
+      var formatted_date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+      console.log(formatted_date);
+    },
     viewCart: function viewCart() {
       if (localStorage.getItem('carts')) {
         this.carts = JSON.parse(localStorage.getItem('carts'));
@@ -2412,6 +2456,7 @@ __webpack_require__.r(__webpack_exports__);
       return price * amount;
     },
     checkForm: function checkForm() {
+      this.errors = [];
       if (this.customer.name && this.customer.contact && this.customer.contact.length >= 9 && this.customer.pickup_time && this.outlet) this.addCustomer();
 
       if (!this.customer.name) {
@@ -2420,9 +2465,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.customer.contact) {
         this.errors.push('Contact Number required');
-      }
-
-      if (this.customer.contact.length < 9) {
+      } else if (this.customer.contact.length < 9) {
         this.errors.push('Invalid Phone Number');
       }
 
@@ -2444,7 +2487,11 @@ __webpack_require__.r(__webpack_exports__);
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date + ' ' + time;
       this.timestamp = dateTime;
+      this.date = today + time;
     }
+  },
+  mounted: function mounted() {
+    this.date_function();
   }
 });
 
@@ -39092,7 +39139,7 @@ var render = function() {
                             _c("p", [
                               _c("b", [
                                 _vm._v(
-                                  _vm._s(teaser.quantity) + " unit(s) in stock"
+                                  _vm._s(teaser.stock) + " unit(s) in stock"
                                 )
                               ])
                             ])
@@ -39103,48 +39150,53 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-footer" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.itemquantity,
-                            expression: "itemquantity"
-                          }
-                        ],
-                        key: index,
-                        staticClass: "mr-2",
-                        class: { blur: !teaser.quantity },
-                        staticStyle: { width: "60px" },
-                        attrs: {
-                          type: "number",
-                          min: "0",
-                          max: teaser.quantity
-                        },
-                        domProps: { value: _vm.itemquantity },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.itemquantity = $event.target.value
-                          }
-                        }
-                      }),
-                      _vm._v("unit(s)\r\n                            "),
+                      !teaser.stock
+                        ? _c("p", [_vm._v(" We are out of stock ")])
+                        : teaser.stock > 5 && teaser.stock < 10
+                        ? _c("p", [_vm._v(" Hurry Up! ")])
+                        : teaser.stock >= 10
+                        ? _c("p", [_vm._v(" Fresh and Nice! ")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      teaser.stock
+                        ? _c("span", [
+                            _c("input", {
+                              key: index,
+                              staticClass: "mr-2",
+                              staticStyle: { width: "60px" },
+                              attrs: {
+                                type: "number",
+                                min: "0",
+                                max: teaser.stock,
+                                value: "0"
+                              },
+                              on: {
+                                input: function($event) {
+                                  return _vm.save($event, teaser)
+                                }
+                              }
+                            }),
+                            _vm._v("unit(s)\r\n                            ")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c(
                         "button",
                         {
                           key: teaser.id,
                           staticClass: "btn btn-info cart",
-                          class: { disabled: !teaser.quantity },
+                          class: { disabled: !teaser.stock },
                           on: {
                             click: function($event) {
-                              return _vm.addToCart(teaser)
+                              return _vm.addToCart()
                             }
                           }
                         },
-                        [_vm._v("Add to Cart\r\n                            ")]
+                        [
+                          _vm._v(
+                            "\r\n                                Add to Cart\r\n                            "
+                          )
+                        ]
                       )
                     ])
                   ]
@@ -39211,7 +39263,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("h3", [_vm._v("Quantity in Stock")]),
                 _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(_vm.one.quantity) + " unit(s)")]),
+                _c("p", [_vm._v(_vm._s(_vm.one.stock) + " unit(s)")]),
                 _c("br"),
                 _vm._v(" "),
                 _c(
@@ -39219,15 +39271,23 @@ var render = function() {
                   {
                     key: _vm.teaser.id,
                     staticClass: "btn btn-info cart btn-lg",
-                    class: { disabled: !_vm.one.quantity },
+                    class: { disabled: !_vm.one.stock },
                     on: {
                       click: function($event) {
-                        return _vm.addToCart(_vm.one)
+                        return _vm.addToCart()
                       }
                     }
                   },
                   [_vm._v("Add to Cart\r\n                        ")]
                 ),
+                _vm._v(" "),
+                !_vm.one.stock
+                  ? _c("p", [_c("b", [_vm._v(" We are out of stock ")])])
+                  : _vm.one.stock > 5 && _vm.one.stock < 10
+                  ? _c("p", [_c("b", [_vm._v(" Hurry Up! ")])])
+                  : _vm.one.stock >= 10
+                  ? _c("p", [_c("b", [_vm._v(" Fresh and Nice! ")])])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -39236,35 +39296,29 @@ var render = function() {
                     staticStyle: { width: "60px", "font-size": "24px" }
                   },
                   [
-                    _c("label", [_vm._v("Quantity")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.itemquantity,
-                          expression: "itemquantity"
-                        }
-                      ],
-                      key: _vm.one.id,
-                      staticClass: "mr-2",
-                      class: { blur: !_vm.one.quantity },
-                      attrs: {
-                        type: "number",
-                        min: "0",
-                        max: _vm.one.quantity
-                      },
-                      domProps: { value: _vm.itemquantity },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.itemquantity = $event.target.value
-                        }
-                      }
-                    })
+                    _vm.one.stock
+                      ? _c("span", [
+                          _c("label", [_vm._v("Quantity")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            key: _vm.one.id,
+                            staticClass: "mr-2",
+                            staticStyle: { width: "60px" },
+                            attrs: {
+                              type: "number",
+                              min: "0",
+                              max: _vm.one.stock,
+                              value: "0"
+                            },
+                            on: {
+                              input: function($event) {
+                                return _vm.save($event, _vm.one)
+                              }
+                            }
+                          }),
+                          _vm._v("unit(s)\r\n                            ")
+                        ])
+                      : _vm._e()
                   ]
                 )
               ],
@@ -39499,6 +39553,37 @@ var render = function() {
                         return
                       }
                       _vm.$set(_vm.customer, "contact", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Pickup Time")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.customer.pickup_time,
+                      expression: "customer.pickup_time"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "datetime-local",
+                    min: new Date(),
+                    required: "",
+                    name: "pickup_time"
+                  },
+                  domProps: { value: _vm.customer.pickup_time },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.customer, "pickup_time", $event.target.value)
                     }
                   }
                 })

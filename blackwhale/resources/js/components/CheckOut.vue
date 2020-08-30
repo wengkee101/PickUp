@@ -58,6 +58,17 @@
                                 <label>Contact</label>
                                 <input type="text" v-model="customer.contact" class="form-control" placeholder="Enter contact number" required name="contact">
                             </div>
+
+                            <div class="form-group">
+                                    <label>Pickup Time</label>
+                                    <input type="datetime-local" v-model="customer.pickup_time" :min="new Date()" class="form-control" required  name="pickup_time">
+                                    <!-- <div class='input-group date' id='datetimepicker1'>
+                                        <input type='text' class="form-control">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div> -->
+                            </div>
     
                             <div class="form-group">
                                 <label>Select Outlet</label>
@@ -126,7 +137,9 @@ export default{
             },
             cust_id:'',
             errors:[],
-            timestamp: ""
+            timestamp: "",
+            time:'',
+            date:''
         }
     },
     created(){
@@ -135,6 +148,15 @@ export default{
         setInterval(this.getNow, 1000);
     },
     methods:{
+        date_function: function () {
+
+            var currentDate = new Date();
+            console.log(currentDate);
+
+            var formatted_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+            console.log(formatted_date);
+
+        },
         viewCart(){
             if(localStorage.getItem('carts')){
                 this.carts = JSON.parse(localStorage.getItem('carts'));
@@ -214,6 +236,7 @@ export default{
             return price*amount;
         },
         checkForm(){
+            this.errors = [];
 
             if(this.customer.name && this.customer.contact && this.customer.contact.length >= 9 && this.customer.pickup_time && this.outlet)
                 this.addCustomer();
@@ -221,15 +244,18 @@ export default{
             if (!this.customer.name) {
                 this.errors.push('Name required');
             }
+
             if (!this.customer.contact) {
                 this.errors.push('Contact Number required');
             }
-            if (this.customer.contact.length < 9) {
+            else if (this.customer.contact.length < 9) {
                 this.errors.push('Invalid Phone Number');
             }
+
             if (!this.customer.pickup_time) {
                 this.errors.push('Pick Up Time required');
             }
+
             if (!this.outlet) {
                 this.errors.push('Select an outlet to pickup');
             }
@@ -245,7 +271,12 @@ export default{
             const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             const dateTime = date +' '+ time;
             this.timestamp = dateTime;
+            this.date = today + time;
         }
+    },
+
+    mounted () {
+      this.date_function()
     }
 }
 </script>

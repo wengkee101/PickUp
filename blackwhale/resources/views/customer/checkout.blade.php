@@ -57,7 +57,7 @@
         </main>
 
 
-        <div class="container">
+        {{-- {<div class="container">
                 <h2>datetimepicker disable past dates and time - nicesnippets.com</h2>
                 <div class="row">
                     <div class='col-sm-6'>
@@ -73,11 +73,13 @@
                     <script type="text/javascript">
                         $(function () {
                             $('#datetimepicker1').datetimepicker({
-                                minDate:new Date()
+                                $var = minDate:new Date()
                             });
                         });
                     </script>
                 </div>
-            </div>
+            </div> --}}
+
+            <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js%22%3E"></script>
 
 </body>
