@@ -3,35 +3,63 @@
 @section('style')
     <style>
         .cm{
-            margin-top: 3rem;
             background-color: white;
         }
 
         .table{
-            margin-top:2rem;
         }
 
-        table{
-            border-radius: 12px;
+        .container {
+            border-radius: 10px;
+            width: 100%;
+            background-color: #ffeaa7;;
+            color: black;
+            padding: 20px 20px;
         }
 
-        .containercm {
-            width: 90%;
-            padding-right: 150px;
-            padding-left: 15px;
-            margin-left: 15rem;
-            color: white;
+        h4{
+            margin: 0;
+        }   
+
+        h1{
+            margin-top: 5rem;
+            color: black;
+            font-size: 5rem;
         }
 
+        .topside{
+            display: flex;  
+            justify-content: space-between;
+
+        }
+
+        .leftside {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rightside img{
+            position: relative;
+            width: 150px;
+        }
     </style>
 @endsection
 
-@section('contentcm')
+@section('content')
+<div class="container">
+    <div class="topside">
+        <div class="leftside">
+            <h1>Franchise Opportunities Form</h1>
 
-<h1>Franchise Opportunities Form</h1>
+            <!--Search function-->
+            <h4 style = "">Search for City</h4>
+        </div>
+        <div class="rightside">
+            <img src="/image/document.png" alt="document">
+        </div>
+    </div>
 
-    <!--Search function-->
-    <h4 style = "margin-top:50px;">Search for City</h4>
     <form action="/franchisesearch" method="GET">
         {{ csrf_field() }}
         <div style = "margin-top:15px; width:100%;" class="input-group">
@@ -46,7 +74,6 @@
     <br><br>
     
     <div class="cm"> 
-    
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -78,6 +105,8 @@
     <div class="pagination" style="margin-left: 58px; margin-top: -1rem;">
         {{$franchises->links()}}
     </div>
+</div>
+
 
 @endsection
 

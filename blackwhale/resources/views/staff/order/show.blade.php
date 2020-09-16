@@ -1,5 +1,27 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+    body{
+        background: rgb(255,178,62);
+        background: linear-gradient(180deg, rgba(255,178,62,1) 0%, rgba(255,179,71,1) 15%, rgba(255,204,51,1) 40%, rgba(255,221,62,1) 70%);
+        height: 130vh;
+    }
+
+        
+        .jumbotron{
+            background: #ffeaa7;
+            width: 60%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 0;
+            transform: translate(-50%, -40%);
+        }
+        
+    </style>    
+@endsection
+
 @section('content')
     
     <div class="jumbotron m-5">

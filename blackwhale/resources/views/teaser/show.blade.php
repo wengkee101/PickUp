@@ -3,10 +3,27 @@
 @section('style')
 
     <style>
+
+        body{
+            background: rgb(255,178,62);
+            background: linear-gradient(180deg, rgba(255,178,62,1) 0%, rgba(255,179,71,1) 15%, rgba(255,204,51,1) 40%, rgba(255,221,62,1) 70%);
+            width: 100%;
+            height: 100%;
+        }
+
         .grid-container {
             display: grid;
             grid-template-columns: auto auto ;
             padding: 20px;
+        }
+
+        .jumbotron{
+            background: #ffeaa7;
+        border-radius: 10px;
+        }
+
+        img{
+            border-radius: 10px;
         }
     </style>
 
@@ -16,12 +33,12 @@
 @section('content')
 
     <div class="container">
-        <a href="/teas" class="btn btn-light mb-5">Go Back</a>
         
-        <h2>Tea Series</h2>
         <br>
         <div class="jumbotron">
-            <a href="/teas" class="btn btn-default">Go Back</a>
+            <a href="/teas" class="btn btn-light mb-5">Go Back</a>
+        
+            <h1 class="ml-5">Tea Series</h1>
             <h4 class="ml-5"><a href="/teaser">All</a> > <a href="#">{{$teacategory->name}}</a></h4>
 
             <div class="grid-container">
@@ -38,7 +55,7 @@
                     <div>
                         <br><br>
                         <h4>Description</h4>
-                        <h6 style="width: 600px; height:80px;">{{$teaserie->description}}</h6><br>
+                        <h5 style="width: 600px; height:80px; text-align: justify">{{$teaserie->description}}</h5><br>
                     </div>
                     <div>
                         <h4>Price</h4>

@@ -2,6 +2,16 @@
 
 @section('style')
 <style>
+    body{
+            background-image: url('/image/Background1.png');
+            background-repeat:no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            background-position: center;    
+        }
+
+
     .input-group {
         position: relative;
         display: flex;
@@ -18,16 +28,41 @@
         margin-bottom: 0;
     }
 
+    .jumbotron{
+        background: #ffeaa7;
+        border-radius: 10px;
+    }
+
+    h1{
+        font-size: 7rem;
+    }
+
+    .topside{
+        display: flex;
+        justify-content: space-between; 
+    }
+
+    .rightside img{
+        position: relative;
+        width: 150px;
+    }
 </style>
 @endsection
 
-@section('contentcm')
-        <div class="container" style="margin-top: 2rem">
+@section('content')
+        <div class="container" style="">
         
-        <h1 style="color:white;">Add Event</h1>
+        
         <div class="jumbotron">
+            <div class="topside">
+                <div class="leftside">
+                    <h1 style="">Add Event</h1>
+                </div>
+                <div class="rightside">
+                    <img src="/image/calendar.png" alt="calendar">
+                </div>
+            </div>
 
-            
             <form action="{{ route('addevent')}}" method="POST" enctype="multipart/form-data">
 
                 {{ csrf_field() }}
@@ -62,7 +97,7 @@
 
                 <br>
                 <!--image preview-->
-               <img id="output" style="height: 40%; width: 70%; display:block; text-align: center; border-radius: 15px">
+                <img id="output" style="height: 20%; width: 40%; display:block; text-align: center; border-radius: 15px">
                
                 <button style="margin-top: 1rem" type="submit" name="submit" class="btn btn-primary">Save</button>
             </form>

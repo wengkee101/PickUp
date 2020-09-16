@@ -3,7 +3,39 @@
 @section('style')
     <style>
         .container{
-            background-color: white;
+            background-color: #ffeaa7;
+            border-radius: 10px;
+        }
+
+        h1{
+            font-size: 7rem;
+        }
+        
+        .upside{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .topside {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem;
+        }
+
+        h4{
+            margin: 0;
+        }   
+
+        .leftside{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rightside img{
+            position: relative;
+            width: 150px;
+            right: 100px;
         }
     </style>
 @endsection
@@ -11,24 +43,37 @@
 @section('content')
 
     <div class="container pt-5">
-        <h1 style = "margin-left:50px;">Outlet Locations</h1>
-
-        <button class="btn btn-primary float-right" title="to add outlet"><a style = "color:white;" href="/outlets/create"> Add Outlet </a></button>
-        <br><br><br>
+        <div class="topside">
+            <div class="leftside">
+                <h1 style = "">Outlet Locations</h1>
+                <h4 style = "">Search</h4>
+            </div>
+            <div class="rightside">
+                <img src="/image/shops.png" alt="shopes">
+            </div>
+        </div>
+        
+        <div class="upside">
+            <div class="serach">
+                <form style="width: 1000px" action="/search" method="GET">
+                    {{ csrf_field() }}
+                    <div style = "" class="input-group">
+                        <input type="search" class="form-control" name="q" placeholder="Search anything"> 
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+           <div class="addoutlet">
+                <button class="btn btn-primary float-right" title="to add outlet"><a style = "color:white;" href="/outlets/create"> Add Outlet </a></button>
+           </div>
+        </div>
 
         <!--Search function-->
-        <h4 style = "margin-left:50px;">Search for City</h4>
-        <form action="/search" method="GET">
-            {{ csrf_field() }}
-            <div style = "margin-left:50px; width:91%;" class="input-group">
-                <input type="search" class="form-control" name="q" placeholder="Search anything"> 
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div>
-        </form>
+        
         <br><br>
 
         <!--Display table of outlets-->

@@ -3,11 +3,18 @@
 @section('style')
 
     <style>
+        body{
+            background: rgb(255,178,62);
+            background: linear-gradient(180deg, rgba(255,178,62,1) 0%, rgba(255,179,71,1) 15%, rgba(255,204,51,1) 40%, rgba(255,221,62,1) 70%);
+            height: 100%;       
+        }
+
         .form-container{
-            -webkit-box-shadow: inset 10px 7px 5px -3px rgba(0,0,0,0.75);
-            -moz-box-shadow: inset 10px 7px 5px -3px rgba(0,0,0,0.75);
-            box-shadow: inset 10px 7px 5px -3px rgba(0,0,0,0.75);
             padding:  50px 120px 20px 120px;
+        }
+
+        .jumbotron{
+            background: #ffeaa7;
         }
 
         .custom-file {
@@ -18,9 +25,12 @@
         }
 
         .head{
-            text-align: center;
-            padding-bottom:20px;
+            font-size: 7rem;
+            height: 100px;
         }
+
+
+
     </style>
 
 @endsection
@@ -29,12 +39,12 @@
 
 <div class="container">
     <br>
-    <a href="/teas" class="btn btn-light mb-5">Go Back</a>
-    
-    <h2 style = "color:white;" class="head">Edit Menu Category</h2>
     
     <div class="form-container jumbotron">
-        
+        <a href="/teas" class="btn btn-light mb-5">Go Back</a>
+
+        <h2 style = "" class="head">Edit Menu Category</h2>
+
         <form method="post" action="{{route('editTeaCat',[$teacategory->id])}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group row">

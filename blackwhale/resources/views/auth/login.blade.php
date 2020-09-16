@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         .loginbody{
-            height: 100vh;
+            height: 80vh;
             display: flex;
             align-items: center;
             text-align: center;
@@ -94,10 +94,12 @@
             left: -100%;
             z-index: -1;
             transition: all .4s;
-            background: -webkit-linear-gradient(right,#00dbde,#fc00ff,#00dbde,#fc00ff);
+            /* background: -webkit-linear-gradient(right,#00dbde,#fc00ff,#00dbde,#fc00ff); */
+            background: linear-gradient(315deg, rgba(64,22,4,1) 0%, rgba(127,43,8,1) 26%, rgba(236,213,33,1) 80%, rgba(255,255,255,1) 100%);  
+
         }
         .button:hover .inner{
-            left: 0;
+            left: -60%;
         }
         .button button{
             width: 100%;

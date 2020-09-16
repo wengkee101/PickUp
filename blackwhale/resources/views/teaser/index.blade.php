@@ -2,7 +2,15 @@
 
 @section('style')
     <style>
+        body{
+            background: rgb(255,178,62);
+            background: linear-gradient(180deg, rgba(255,178,62,1) 0%, rgba(255,179,71,1) 15%, rgba(255,204,51,1) 40%, rgba(255,221,62,1) 70%);
+            width: 100%;
+            height: 100%;
+        }
+
         .container{
+            border-radius: 10px;
             background-color: #ffeaa7;
         }
 
@@ -11,8 +19,9 @@
         }
 
         .containertitle{
-            text-align:left;
-            margin-left: 58px;
+
+            width: 90%;
+            margin: 2rem auto;
         }
 
         .accordion {
@@ -21,7 +30,6 @@
             cursor: pointer;
             padding: 18px;
             width: 90%;
-            margin: 10px 20px 10px, 0px;
             border-radius: 6px;
             text-align: left;
             outline: none;
@@ -93,6 +101,46 @@
             border:none;
         }
 
+        .row-button{
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem;
+            width: 96%;
+        }
+
+        .row-button a{
+            margin-left: 1rem;
+        }
+
+        h1{
+            font-size: 10rem;
+            
+        }
+
+        .upside{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .bottomside{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .bubble-tea img{
+            width: 200px;
+        }
+
+        .bubble-tea .pudding{
+            width: 100px;
+            margin-bottom: -9rem;
+            margin-right: -6rem;
+        }
+
     </style>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -102,58 +150,68 @@
 <div class="container">
     <div class="containerfont">
         <div class="containertitle">
-            <h1>Tea Series</h1><br><br><br>
-            <a href="/teacat/create" class="btn btn-primary">Add Menu Category</a>
-            <a href="/teaser/create" class="btn btn-primary"> Add Menu Series </a><br>
+            <div class="upside">
+                <div class="h1">
+                    <h1>Tea Series</h1>
+                </div>
+                <div class="bubble-tea">
+                    <img src="/image/pudding.png" class="pudding" alt="pudding">
+                    <img src="/image/bubble-tea.png" alt="bubble tea">
+                </div>
+            </div>
+            <div class="bottomside">
+                <a href="/teacat/create" class="btn btn-primary" style="margin-bottom: 1rem;">Add Menu Category</a>
+                <a href="/teaser/create" class="btn btn-primary">Add Menu Series</a><br>
+            </div>
         </div>
 
+
+        
         @if(count($teaseries) > 0)
             @foreach($teacategories as $teacategory)
                 
-            <!--edit and delete button-->
-            <div class="row" style="margin-left:53px; margin-bottom:10px;">
-                <div style = "text-align:left;">
-                    <a style = "margin-left:74rem;" href="/teacat/{{$teacategory->id}}/edit" class="btn btn-warning">Edit Category</a>
+                <!--edit and delete button-->
+                <div class="row-button" style="">
+                    <div style = "">
+                        <a style = "" href="/teacat/{{$teacategory->id}}/edit" class="btn btn-warning">Edit Category</a>
+                    </div>
+                    <div style = "">
+                        <a style = "color: white;" class="btn btn-danger" onclick="sweetalertclick('{{$teacategory->name}}', '{{$teacategory->id}}')">Delete Category</a>
+                    </div>
                 </div>
-                <div style = "text-align:right;">
-                    <a style = "margin-left:2rem; color: white;" class="btn btn-danger" onclick="sweetalertclick('{{$teacategory->name}}', '{{$teacategory->id}}')">Delete Category</a>
-                </div>
-            </div>
-            
-
-            <!--display category-->
-            <button class = "accordion"> 
-                {{$teacategory->name}}<span id="counter">{{$teacategory->series()->count()}}</span>
-            </button>
-            
-            <div class = "_panel">
                 
-                <div class = "_grid-container"> 
-                    <!--display series-->
-                    @foreach($teacategory->series as $teaserie)
-                        <div class="teaproduct">
-                            <a href="/teaser/{{$teaserie->id}}">{{$teaserie->name}}</a><br><br>
-                            <img src="{{ asset('/storage/upload\menu/' . $teaserie->image) }}" alt="{{$teaserie->name}}" width="100px" height="100px"><br>
-                            <p>RM {{number_format($teaserie->price, 2)}}</p>
-                        </div>
-                    @endforeach
+
+                <!--display category-->
+                <button class = "accordion"> 
+                    {{$teacategory->name}}<span id="counter">{{$teacategory->series()->count()}}</span>
+                </button>
+                
+                <div class = "_panel">
+                    
+                    <div class = "_grid-container"> 
+                        <!--display series-->
+                        @foreach($teacategory->series as $teaserie)
+                            <div class="teaproduct">
+                                <a href="/teaser/{{$teaserie->id}}">{{$teaserie->name}}</a><br><br>
+                                <img src="{{ asset('/storage/upload\menu/' . $teaserie->image) }}" alt="{{$teaserie->name}}" width="100px" height="100px"><br>
+                                <p>RM {{number_format($teaserie->price, 2)}}</p>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        <br><br>
-        @endforeach
-            
+                <br><br>
+            @endforeach
+
+        <div class="pagination" style="">
+            {{$teacategories->links()}}
+        </div>
+    </div>
+
     @else
         <p>No results found</p>
             
     @endif
-    </div>
-
-    <div class="pagination" style="margin-left: 58px; margin-top: -1rem;">
-        {{$teacategories->links()}}
-    </div>
-        
-
-
+    
 </div>
 
     <script type="application/javascript">

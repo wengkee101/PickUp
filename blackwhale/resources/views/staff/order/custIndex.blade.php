@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        .jumbotron{
+            background: #ffeaa7;
+
+        }    
+        h2{
+            font-size: 6rem;
+            margin: 0
+        }
+    </style>   
+@endsection
+
 @section('content')
     
     <div class="jumbotron m-5">

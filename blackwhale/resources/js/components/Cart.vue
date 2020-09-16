@@ -153,9 +153,7 @@
 </template>
 
 <style>
-    .cart{
-        float:right;
-    }
+
 </style>
 
 <script>

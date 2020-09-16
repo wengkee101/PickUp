@@ -47,6 +47,10 @@ Route::get('/staffhome', function(){
     return view('staffhome');
 });
 
+Route::get('/view', function(){
+    return view('view');
+});
+
 //view Update Event                 - function:D    Testing:    UI Design:   Complete:       
 Route::get('/eventupdate', 'EventController@index');
 Route::post('/addevent', 'EventController@store')->name('addevent'); //the name at behind is from form-action
@@ -92,3 +96,6 @@ Route::get('/order/{id}', 'OrderController@show');
 Route::get('/custDetails', 'OrderController@custIndex');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+

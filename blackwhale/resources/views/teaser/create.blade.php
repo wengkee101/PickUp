@@ -3,20 +3,28 @@
 @section('style')
 
     <style>
+        .jumbotron{
+            background: #ffeaa7;
+        }
+
+        body{
+            background: rgb(255,178,62);
+            background: linear-gradient(180deg, rgba(255,178,62,1) 0%, rgba(255,179,71,1) 15%, rgba(255,204,51,1) 40%, rgba(255,221,62,1) 70%);
+            width: 100%;
+            height: 100%;
+        }
+
+
         label{
             color:black;
         }
 
         .form-container{
-            -webkit-box-shadow: inset 10px 7px 5px -3px rgba(0,0,0,0.75);
-            -moz-box-shadow: inset 10px 7px 5px -3px rgba(0,0,0,0.75);
-            box-shadow: inset 10px 7px 5px -3px rgba(0,0,0,0.75);
-            padding:  50px 120px 20px 120px;
+            border: .4px solid orange;
         }
 
         .head{
-            text-align: center;
-            padding-bottom:20px;
+
         }
 
         .custom-file {
@@ -30,6 +38,61 @@
             margin-top:5px;
         }
 
+        .icon{
+            display: flex;
+
+            flex-direction: row;
+        }
+        
+        img{
+            display: flex;
+            border-radius: 15px;
+        }
+
+        .leftside{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        h2{
+            position: relative;
+            top: 8rem;
+            font-size: 10rem;
+        }
+
+        .image{
+            padding: 3rem;
+            display: flex;
+            justify-content: center;    
+            align-items: center;
+        }
+
+        .top-row{
+            height: 330px;
+
+        }
+        
+        .icon img {
+            bottom: -5px;
+            position: relative;
+            width: 80px;
+        }
+        
+        .icon .hotcup{
+            left: 2rem;
+            transform: rotateY(180deg);
+        }
+        .icon .bubble{
+            right: 0rem;
+        }
+
+        .icon-table{
+            position: relative;
+            width: 150px;
+            left: 2rem;
+        }
+
     </style>
 
 @endsection
@@ -38,17 +101,46 @@
 
 <div class="container">
     <br>
-    <a href="/teas" class="btn btn-light mb-5">Go Back</a>
-
-    <h2 style = "color:white;" class="head">Add Menu Series</h2>
+    
     
     <div class="form-container jumbotron">
-            
+
+        <a href="/teas" class="btn btn-light mb-5">Go Back</a>
+
+        <div class="top-row">
+
+
+            <div class="col-xs-8 leftside">
+                
+                <div class="group">
+                    <div class="icon">
+                        {{-- <img class="hotcup" src="/image/hot-chocolate.png" alt="image1">
+                        <img class="bubble" src="/image/bubble-tea2.png" alt="image2"> --}}
+                    </div>
+
+                    <div class="icon-table">
+                        {{-- <img class="table" src="/image/table.png" alt="image3"> --}}
+                    </div>
+                </div>
+
+                <div class="h2">
+                    <h2 style = "" class="head">Menu Series</h2>
+                </div>
+            </div>
+
+
+            <div class="col-xs-4 image">
+                <!--image preview-->
+                <img id="output" src="/storage/upload/menu/noimage.jpg" style="width: 100%; height: 100%">
+            </div>
+        </div>
+        
         <form method="post" action="{{route('addTeaSer')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group row">
-                <label for="cats" class="col-sm-3 col-form-label">Choose a category:</label>
-                <select id="cats" name="cats_id" style = "margin-left: 15px;">
+
+                <select class="form-control" id="cats" name="cats_id" style = "width: 98%;margin-left: 1rem;" required>
+                    <option disabled selected>Selected a Category</option>
                     @foreach($teacategories as $teacategory)
                         <option value={{$teacategory->id}}>{{$teacategory->name}}</option>
                     @endforeach
@@ -70,9 +162,7 @@
                     </div>
             </div>
 
-            <!--image preview-->
-            <img id="output" src="/storage/upload/menu/noimage.jpg" style=" margin-left: 255px; height: 30%; width: 30%; display:block; text-align: center; border-radius: 15px">
-
+            
             <br>
             <div class="form-group row">
                 <label for="descriptionid" class="col-sm-3 col-form-label">Description</label>

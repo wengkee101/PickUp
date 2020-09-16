@@ -20,10 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('cart', require('./components/Cart.vue').default);
-Vue.component('cartbycat', require('./components/CartByCategory.vue').default);
-Vue.component('teaser', require('./components/TeaSer.vue').default);
-Vue.component('checkout', require('./components/CheckOut.vue').default);
-
+Vue.component('checkout', require('./components/Checkout.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

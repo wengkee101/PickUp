@@ -2,16 +2,30 @@
 
 @section('style')
 <style>
- .container{
-    background-color: white;
- }
+    .container{
+        background: #ffeaa7;
+    }
+
+    .head{
+        font-size: 7rem;
+        padding-bottom:20px;
+        margin-left: 46.5px;
+    }
+
+    form{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 20px auto;
+    }
 </style>
 @endsection
 
 @section('content')
 
     <div class="container pt-5">
-        <h2>Add Outlet</h2>
+        <h2 class="head">Add Outlet</h2>
         
         <form method="post" action="{{route('addOutlet')}}" enctype="multipart/form-data">
             {{ csrf_field() }}

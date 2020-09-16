@@ -19,8 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/joan.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/cm.css') }}" rel="stylesheet">
-
+    
     <!--bootstrap icon-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,8 +34,11 @@
         
        body{
             background-image: url('/image/Background1.png');
-            background-repeat:repeat-y;
-            background-size: 1800px 1200px;
+            background-repeat:no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            background-position: center;    
         }
 
         div._Container
@@ -76,9 +78,11 @@
             z-index: 0;
             cursor: pointer;
         }
+        
         .green 
         {
-            background: rgba(245,181,38,1);
+            background: rgb(255,178,62);
+            background: linear-gradient(0deg, rgba(255,178,62,1) 25%, rgba(255,179,71,1) 50%, rgba(255,204,51,1) 80%, rgba(255,221,62,1) 95%);
         }
         
         /* Border X get width  */
@@ -123,44 +127,45 @@
         <div class="_Container">
             <div class="_container green borderXwidth">
 
-            <!--left nav-bar-->
-            @guest
-            <div class="leftnav">
-                <a href="{{ url('/') }}">
-                    {{ config('app.name', 'Black Whale') }}
-                </a>
-            </div> 
+                <!--left nav-bar-->
+                @guest
+                <div class="leftnav">
+                    <a href="{{ url('/') }}">
+                        {{ config('app.name', 'Black Whale') }}
+                    </a>
+                </div> 
+                    
+                @else
+                        <a href="/staffhome">HOME</a>
+                        <a href="/orders">USER ORDERS</a>
+                        <a href="/teas">EDIT MENU</a>
+                        <a href="/outlets">ADD OUTLET</a>
+                        <a href="/eventupdate">EVENT UPDATES</a>
+                        <a href="/franchise_page">FRANCHISE PAGE</a>
+                @endguest
+
+                <!--right nav-bar-->
+                @guest
+                    <a href="{{ route('login') }}">{{ __('LOGIN') }}</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">{{ __('REGISTER') }}</a>
                 
-            @else
-                    <a href="/staffhome">HOME</a>
-                    <a href="/orders">USER ORDERS</a>
-                    <a href="/teas">EDIT MENU</a>
-                    <a href="/outlets">ADD OUTLET</a>
-                    <a href="/eventupdate">EVENT UPDATES</a>
-                    <a href="/franchise_page">FRANCHISE PAGE</a>
-            @endguest
-
-            <!--right nav-bar-->
-            @guest
-                <a href="{{ route('login') }}">{{ __('LOGIN') }}</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">{{ __('REGISTER') }}</a>
-            
-                @endif         
-              
-            
-            @else
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                    {{ __('LOGOUT') }}
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            @endguest
-            
+                    @endif         
+                
+                
+                @else
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        {{ __('LOGOUT') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
+                
+            </div>
         </div>
     </div>
 
@@ -170,14 +175,7 @@
         </main>
     </div>
 
-    <div class="containercm">
-        @yield('contentcm')
-    </div>
-
 </div>
-
-    
-
     @yield('script')
 </body>
 

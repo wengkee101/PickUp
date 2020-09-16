@@ -1,4 +1,16 @@
 
+body::-webkit-scrollbar{
+  width: 0.1rem;
+}
+
+body::-webkit-scrollbar-trackc{
+   background:#1e1e24;
+}
+
+body::-webkit-scrollbar-thumb{
+  background: #6649b8
+}
+
 /*website*/
 
 .topnav {
