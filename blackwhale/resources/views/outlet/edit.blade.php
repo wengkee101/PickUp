@@ -3,7 +3,8 @@
 @section('style')
 <style>
  .container{
-    background-color: white;
+    background: #ffeaa7;
+    border-radius: 10px
  }
 </style>
 @endsection

@@ -19,7 +19,7 @@
         </header>
 
         <div class="container">
-            <h1 style="">Franchise Opportunities Form</h1>
+            <h1 style="padding: 20px 0">Franchise Opportunities Form</h1>
             <div class="jumbotron" style="padding-top:2rem; padding-left:4rem;">
         
             <form action="{{ route('addform') }}" method="POST" enctype="multipart/form-data">
@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <footer>
+        <footer style="padding-top: .5rem">
             <div class="left-content">
               <p>© 2019 - 2020 <strong>Golden Whale International Sdn Bhd</strong></p>
               <p>Visitors: 791118</p>

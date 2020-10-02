@@ -96,7 +96,7 @@
     <div class="button">
       <a href="/homepage">Homepage</a>
       <a href="/cust">Order</a>
-      <a href="/view">View</a>
+      {{-- <a href="/view">View</a> --}}
     </div>
     
 @endsection

@@ -43,7 +43,7 @@
         </header>
 
         <div class="container">
-            <h1 class='page-title'>Event Update</h1>
+            <h1 class='page-title' style="padding: 20px 0">Event Update</h1>
         </div>
         
         <div class="container">
@@ -70,7 +70,7 @@
 
 
     </main>
-    <footer style="">
+    <footer style="padding-top: .5rem; height: 12%">
         <div class="left-content" style="padding-left: 5rem;">
         <p>© 2019 - 2020 <strong>Golden Whale International Sdn Bhd</strong></p>
         <p>Visitors: 791118</p>

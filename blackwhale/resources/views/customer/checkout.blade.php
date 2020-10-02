@@ -50,7 +50,7 @@
 </head>
 
 <body>
-        <main class="py-4">
+        <main class="" style="padding-bottom: 4rem; padding-top: .5rem;">
                 <div id="app">
                         <checkout :userid="1"></checkout>
                 </div>

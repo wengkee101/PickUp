@@ -1,5 +1,10 @@
 <template>
 <div id = "myproduct" class="container">
+    <div class="header" style="margin-bottom: 2rem;">
+        <div class="top">
+            <p>Order</p>
+        </div>
+    </div>
 
     <div class="row mt-2 mb-2">
             <div class="col-md-10">&nbsp;</div>
@@ -112,7 +117,7 @@
         </div>
 
         <div v-show="selectedTab == 'one'" >
-            <div class="jumbotron">
+            <div class="jumbotron" style="border: 2px solid gray;background: rgba(255, 187, 0, 0.479);">
                 <div class="row m-3">
                     <div class="col-sm-6">
                         <h2>{{one.name}}</h2>

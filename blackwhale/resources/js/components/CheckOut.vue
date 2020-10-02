@@ -1,8 +1,15 @@
 <template>
+    
     <div class="container">
-        <div class="row mt-5">
+        <div class="header" style="position: sticky;">
+            <div class="top">
+                <p>Checkout</p>
+            </div>
+        </div>
+        
+        <div class="row mt-5" >
             <div class="col-md-8 offset-md-2">
-                <div class="card p-5">
+                <div class="card p-5" style="border-radius: 10px; border: 5px solid #9c8c60">
                     <div class="card-header">
                         <h3>Order Summary</h3> 
                         <small style="float:right;">{{timestamp}}</small>
@@ -44,7 +51,7 @@
 
         <div class="row mt-5">
             <div class="col-md-8 offset-md-2">
-                <div class="card p-5">
+                <div class="card p-5" style="border-radius: 10px; border: 5px solid #9c8c60">
                     <h3 class="card-header">Customer Details</h3>
                     <small>This form is for pick up purpose.</small>
                     <div class="card card-body mt-3 p-3">
@@ -60,16 +67,10 @@
                             </div>
 
                             <div class="form-group">
-                                    <label>Pickup Time</label>
-                                    <input type="datetime-local" v-model="customer.pickup_time" :min="new Date()" class="form-control" required  name="pickup_time">
-                                    <!-- <div class='input-group date' id='datetimepicker1'>
-                                        <input type='text' class="form-control">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div> -->
+                                <label>Pickup Time</label>
+                                <input type="datetime-local" v-model="customer.pickup_time" class="form-control" required  name="pickup_time" min="date">
                             </div>
-    
+                            
                             <div class="form-group">
                                 <label>Select Outlet</label>
                                 <select class="form-control" v-model="outlet" required>
@@ -100,6 +101,31 @@
 
 
 <style>
+    body{
+        background: #ffeaa7;
+    }
+
+    .header{
+        z-index: 1111;
+        top: 0;
+    }
+    .top{
+        background: #ffc800;
+        font-size: 3.75rem;
+        text-align: center;
+        position: relative;
+        width: 100vw;
+        left: -19.20%;
+        padding: 10px 0;
+    }
+    .header p{
+        text-transform: uppercase;  
+        margin: 0;
+        font-weight: bolder;
+        color: #9c8c60;
+
+    }
+
 
 </style>
 
@@ -210,7 +236,7 @@ export default{
             this.removeCart();
         },
         addCustomer(){
-            fetch('api/customers', {
+            fetch('/api/customers', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json'
@@ -238,7 +264,7 @@ export default{
         checkForm(){
             this.errors = [];
 
-            if(this.customer.name && this.customer.contact && this.customer.contact.length >= 9 && this.customer.pickup_time && this.outlet)
+            if(this.customer.name && this.customer.contact && this.customer.contact.length >= 9 && this.outlet)
                 this.addCustomer();
 
             if (!this.customer.name) {
@@ -252,18 +278,19 @@ export default{
                 this.errors.push('Invalid Phone Number');
             }
 
-            if (!this.customer.pickup_time) {
-                this.errors.push('Pick Up Time required');
-            }
+            // if (!this.customer.pickup_time) {
+            //     this.errors.push('Pick Up Time required');
+            // }
 
             if (!this.outlet) {
                 this.errors.push('Select an outlet to pickup');
             }
             
         },
-        removeCart(){
+        removeCart(id){
             localStorage.removeItem('carts');
-            window.location.href = 'http://blackwhale.my/cust';
+            window.open(`http://bw.my/pdf`, "_blank");
+            window.location.href = 'http://bw.my/cust';
         },
         getNow() {
             const today = new Date();

@@ -20,7 +20,7 @@
     
 
         <div class="container">
-            <h1 class='page-title'>Outlet Location</h1>
+            <h1 class='page-title' style="padding: 20px 0">Outlet Location</h1>
 
             <h2>Selangor & Kuala Lumpur</h2><hr>
             <a  href="https://www.google.com/maps/place/Black+Whale,+Setapak,+PV128,+KL/@3.200601,101.717754,15z/data=!4m5!3m4!1s0x0:0xa6266da2c8348fec!8m2!3d3.2006009!4d101.7177543?hl=en">
@@ -85,13 +85,13 @@
             </a><br><br>
             <a href="https://www.google.com/maps/place/The+Black+Whale,+Cyberjaya,+Selangor/@2.9221797,101.6489061,17z/data=!3m1!4b1!4m5!3m4!1s0x31cdb7aa66405891:0xbec7a9a9730b6255!8m2!3d2.9221743!4d101.6510948?shorturl=1">
                 21. Dpulze, Cyberjaya
-            </a><br>
+            </a><br><br>
             <p>
                 22. Lot 10 Shopping Centre <span style="color:red;"><i>(Coming Soon On August)</i></span>
-            <p>
+            <p><br>
             <p>
                 23. KLIA 2 <span style="color:red;"><i>(Coming Soon On September)</i></span>
-            </p>
+            </p><br>
 
             <h2>Johor</h2><hr>
             <a href="https://www.google.com/maps/place/Black+Whale+Mount+Austin+%E9%BB%91%E9%B2%B8/@1.5641229,103.7756601,17z/data=!3m1!4b1!4m5!3m4!1s0x31da6f835a8f8f23:0x5cd2e1bfb6ba2e6a!8m2!3d1.5641175!4d103.7778488?shorturl=1">
@@ -108,10 +108,10 @@
             </a><br><br>
             <a href="https://www.google.com/maps/place/The+Black+Whale+Eco+Botanic+%E9%BB%91%E9%B2%B8/@1.4376587,103.6174925,17z/data=!3m1!4b1!4m5!3m4!1s0x31da0b024058cad7:0xe7e04eb0704ab4ad!8m2!3d1.4376533!4d103.6196812?shorturl=1">
                 28. Eco Botanic 
-            </a><br>
+            </a><br><br>
             <p>
                 29. Paradigm Mall <span style="color:red;"><i>(Coming Soon On September)</i></span>
-            </p>
+            </p><br>
 
             <h2>Perak</h2><hr>
             <a href="https://www.google.com/maps/place/Black+Whale,+Ipoh+Soho,+Perak/@4.5922271,101.0870565,17z/data=!3m1!4b1!4m5!3m4!1s0x31caedea1fe32af5:0x4dabdc74e292ff76!8m2!3d4.5922218!4d101.0892452?shorturl=1">
@@ -129,6 +129,8 @@
             <a href="https://www.google.com/maps/place/The+Black+Whale+Raja+Uda+%E9%BB%91%E9%B2%B8/@5.4163865,100.3772095,17z/data=!3m1!4b1!4m5!3m4!1s0x304ac5996f254adf:0xa5055e754d73e471!8m2!3d5.4163812!4d100.3793982?shorturl=1">
                 34. Pusat Perniagaan Raja Uda
             </a><br><br>
+
+            <h2>Melaka</h2><hr>
             <a href="https://www.google.com/maps/place/Black+Whale+Tmn+Kota+Laksamana+Jaya,+Melaka+%E9%BB%91%E9%B2%B8/@2.1995461,102.2287253,17z/data=!3m1!4b1!4m5!3m4!1s0x31d1f10ac7d4a243:0xf381372138d6f7a7!8m2!3d2.1995407!4d102.230914?shorturl=1">
                 35. Kota Laksamana Jaya
             </a><br><br>
@@ -145,10 +147,10 @@
             <h2>Sabah</h2><hr>
             <a href="https://www.google.com/maps/place/Black+Whale+Plaza+333,+Sabah+%E9%BB%91%E9%B2%B8/@5.9238327,116.0754748,17z/data=!3m1!4b1!4m5!3m4!1s0x323b69e9518886bb:0x747160e4fb6f3f0!8m2!3d5.9238274!4d116.0776635?shorturl=1">
                 38. Plaza 333, Kota Kinabalu
-            </a><br>
+            </a><br><br>
             <p>
                 39. Suria Sabah Shopping Mall <span style="color:red;"><i>(Coming Soon On August) </i></span>
-            </p>
+            </p><br>
 
             <h2>Brunei</h2><hr>
             <a href="https://www.google.com/maps/place/The+Black+Whale+%E9%BB%91%E9%B2%B8/@4.9471911,114.9655122,17z/data=!3m1!4b1!4m5!3m4!1s0x3222f56cf6a25963:0x143578e29bff6b2!8m2!3d4.9471858!4d114.9677009?shorturl=1">
@@ -156,13 +158,13 @@
             </a><br><br>
             <p>
                 41. The Walk <span style="color:red;"><i>(Coming Soon On August) </i></span>
-            </p>
+            </p><br>
 
             <iframe class="iframe100" height="480" width="100%" src="https://www.google.com/maps/d/embed?mid=1U0kMb6PL-8ew2dVdWfW0YvgoPZ_pcyVY" style="margin-bottom: 2rem;"></iframe>
         </div>
 
     </main>
-    <footer style="">
+    <footer style="padding-top: .5rem;">
         <div class="left-content" style="padding-left: 5rem;">
         <p>© 2019 - 2020 <strong>Golden Whale International Sdn Bhd</strong></p>
         <p>Visitors: 791118</p>

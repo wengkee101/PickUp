@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap-icons": "^1.0.0",
         "font-awesome": "^4.7.0",
         "laravel-mix-scrollmagic-gsap": "^0.1.1",
         "vue-slick": "^1.1.15",

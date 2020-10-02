@@ -94,6 +94,8 @@ Auth::routes();
 Route::get('/orders', 'OrderController@index');
 Route::get('/order/{id}', 'OrderController@show');
 Route::get('/custDetails', 'OrderController@custIndex');
+Route::any('/searchOrder', 'OrderController@userSearch');
+Route::get('/pdf', 'OrderController@pdfpdf');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

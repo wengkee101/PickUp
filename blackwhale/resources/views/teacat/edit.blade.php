@@ -29,7 +29,13 @@
             height: 100px;
         }
 
+        .btn-light{
+            background-color: #fdcb6e;
+        }
 
+        .btn-light:hover{
+            background-color: orange;
+        }
 
     </style>
 
@@ -41,7 +47,7 @@
     <br>
     
     <div class="form-container jumbotron">
-        <a href="/teas" class="btn btn-light mb-5">Go Back</a>
+        <a href="/teas" class="btn btn-light mb-5"><i class="fas fa-chevron-circle-left"></i> Previous</a>
 
         <h2 style = "" class="head">Edit Menu Category</h2>
 

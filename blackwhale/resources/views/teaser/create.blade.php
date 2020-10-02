@@ -93,6 +93,13 @@
             left: 2rem;
         }
 
+        .btn-light{
+            background-color: #fdcb6e;
+        }
+
+        .btn-light:hover{
+            background-color: orange;
+        }
     </style>
 
 @endsection
@@ -105,7 +112,7 @@
     
     <div class="form-container jumbotron">
 
-        <a href="/teas" class="btn btn-light mb-5">Go Back</a>
+        <a href="/teas" class="btn btn-light mb-5"><i class="fas fa-chevron-circle-left"></i> Previous</a>
 
         <div class="top-row">
 

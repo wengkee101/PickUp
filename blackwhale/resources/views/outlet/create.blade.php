@@ -4,6 +4,7 @@
 <style>
     .container{
         background: #ffeaa7;
+        border-radius: 10px;
     }
 
     .head{

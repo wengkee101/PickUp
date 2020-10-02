@@ -25,6 +25,14 @@
         img{
             border-radius: 10px;
         }
+
+        .btn-light{
+            background-color: #fdcb6e;
+        }
+
+        .btn-light:hover{
+            background-color: orange;
+        }
     </style>
 
 @endsection
@@ -36,7 +44,7 @@
         
         <br>
         <div class="jumbotron">
-            <a href="/teas" class="btn btn-light mb-5">Go Back</a>
+            <a href="/teas" class="btn btn-light mb-5"><i class="fas fa-chevron-circle-left"></i> Previous</a>
         
             <h1 class="ml-5">Tea Series</h1>
             <h4 class="ml-5"><a href="/teaser">All</a> > <a href="#">{{$teacategory->name}}</a></h4>

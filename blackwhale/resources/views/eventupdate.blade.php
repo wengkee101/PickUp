@@ -2,15 +2,15 @@
 
 @section('style')
 <style>
-    body{
-            background-image: url('/image/Background1.png');
-            background-repeat:no-repeat;
-            background-size: cover;
-            width: 100%;
-            height: 100%;
-            background-position: center;    
-        }
-
+    body
+    {
+        background-image: url('/image/Background1.png');
+        background-repeat:no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        background-position: center;    
+    }
 
     .input-group {
         position: relative;
@@ -30,7 +30,6 @@
 
     .jumbotron{
         background: #ffeaa7;
-        border-radius: 10px;
     }
 
     h1{
@@ -45,15 +44,14 @@
     .rightside img{
         position: relative;
         width: 150px;
-    }
+    }   
 </style>
 @endsection
 
 @section('content')
-        <div class="container" style="">
+    <div class="container" style="">
         
-        
-        <div class="jumbotron">
+        <div class="jumbotron" style="border-radius: 10px; padding:2rem 3rem">
             <div class="topside">
                 <div class="leftside">
                     <h1 style="">Add Event</h1>

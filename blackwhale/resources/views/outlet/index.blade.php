@@ -119,7 +119,7 @@
                 
             @else
                 <p>No results found</p>
-                    
+
             @endif
         </div>
     </div>

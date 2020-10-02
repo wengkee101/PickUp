@@ -529,7 +529,7 @@
       </div>
     </div>
 
-    <footer>
+    <footer style="">
       <div class="left-content">
         <p>© 2019 - 2020 <strong>Golden Whale International Sdn Bhd</strong></p>
         <p>Visitors: 791118</p>

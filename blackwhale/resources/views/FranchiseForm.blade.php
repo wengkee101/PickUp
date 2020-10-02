@@ -1,11 +1,8 @@
 @extends('layouts.app')    <!--Staff Layout-->
 
 @section('style')
-    <style>
-        .cm{
-            background-color: white;
-        }
 
+    <style>
         .table{
         }
 
@@ -73,8 +70,7 @@
     </form>
     <br><br>
     
-    <div class="cm"> 
-        <table class="table">
+        <table class="table table-striped table-bordered">
             <thead class="thead-dark">
             <tr>
                 <th>Name</th>
@@ -100,9 +96,8 @@
             </tbody>
             @endforeach
         </table>
-    </div>
 
-    <div class="pagination" style="margin-left: 58px; margin-top: -1rem;">
+    <div class="pagination" style="margin-left: 900px; margin-top: -1rem;">
         {{$franchises->links()}}
     </div>
 </div>
