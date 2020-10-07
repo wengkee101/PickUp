@@ -83,7 +83,7 @@
                 <div class="col-xs-2">
                     <select name="customerId" id="" class="form-control">
                         <option value="0" disabled selected>-Customer ID-</option>
-                        @foreach ($search[0] as $cust)
+                        @foreach ($search[0]->unique('name') as $cust)
                             <option value="{{$cust->id}}">{{$cust->name}}</option>
                         @endforeach
                     </select>
@@ -91,7 +91,7 @@
                 <div class="col-xs-2">
                     <select name="outletId" id="" class="form-control">
                         <option value="0" disabled selected>-Outlet ID-</option>
-                        @foreach ($search[1] as $outlet)
+                        @foreach ($search[1]->unique('name') as $outlet)
                             <option value="{{$outlet->id}}">{{$outlet->name}}</option>
                         @endforeach
                     </select>

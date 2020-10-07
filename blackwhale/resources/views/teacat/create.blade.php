@@ -88,7 +88,7 @@
             <div class="form-group row">
                 <label for="nameid" class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-9">
-                    <input name="name" type="text" class="form-control" id="nameid" placeholder="Name">
+                    <input name="name" type="text" class="form-control" id="nameid" placeholder="Name" required>
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
             <div class="form-group row">
                 <label for="photos" class="col-sm-3 col-form-label">Image Upload</label>
                 <div class="custom-file">
-                    <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" >
+                    <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" required>
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>

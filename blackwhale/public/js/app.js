@@ -2394,12 +2394,47 @@ __webpack_require__.r(__webpack_exports__);
       date: ''
     };
   },
+  mounted: function mounted() {
+    var script = document.createElement("script");
+    script.src = "https://www.paypal.com/sdk/js?client-id=AcLvmayIWHe4njViaZ80b_Fyw0VWFvEt3_Hqh3T-ZYghmS31L_236ccB_Ez8MwUBQtKT7kRBON5jvmxl&currency=MYR";
+    script.addEventListener("load", this.setLoaded);
+    document.body.appendChild(script);
+  },
   created: function created() {
     this.viewCart();
     this.viewOutlet();
     setInterval(this.getNow, 1000);
   },
   methods: {
+    setLoaded: function setLoaded() {
+      var _this = this;
+
+      // console.log("Hello");
+      window.paypal.Buttons({
+        createOrder: function createOrder(data, actions) {
+          // This function sets up the details of the transaction, including the amount and line item details.
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                currecy_code: "MYR",
+                value: _this.total
+              }
+            }]
+          });
+        },
+        onApprove: function onApprove(data, actions) {
+          if (_this.checkForm()) {
+            _this.addCustomer();
+
+            _this.storeToOrdersTable();
+
+            return actions.order.capture().then(function (details) {
+              alert('Transaction Completed By ' + details.payer.name.given_name);
+            });
+          }
+        }
+      }).render(this.$refs.paypal);
+    },
     date_function: function date_function() {
       var currentDate = new Date();
       console.log(currentDate);
@@ -2426,18 +2461,18 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.order);
     },
     viewOutlet: function viewOutlet() {
-      var _this = this;
+      var _this2 = this;
 
       fetch('/api/outlets').then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this.outlets = res.data;
+        _this2.outlets = res.data;
       })["catch"](function (err) {
         return console.log(err);
       });
     },
     storeToOrdersTable: function storeToOrdersTable() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.order.user_id = this.userid;
       this.order.payment = 'fpx';
@@ -2452,14 +2487,14 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (data) {
         alert("Order Added");
-        _this2.order.id = '', _this2.order.user_id = '', _this2.order.order_id = '', _this2.order.customer_id = '', _this2.order.outlet_id = '', _this2.order.payment = '', _this2.order.tea_id = [], _this2.order.quantity = [], _this2.order.unit_price = [];
+        _this3.order.id = '', _this3.order.user_id = '', _this3.order.order_id = '', _this3.order.customer_id = '', _this3.order.outlet_id = '', _this3.order.payment = '', _this3.order.tea_id = [], _this3.order.quantity = [], _this3.order.unit_price = [];
       })["catch"](function (err) {
         return console.log(err);
       });
       this.removeCart();
     },
     addCustomer: function addCustomer() {
-      var _this3 = this;
+      var _this4 = this;
 
       fetch('/api/customers', {
         method: 'POST',
@@ -2470,12 +2505,11 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
-        _this3.customer.id = '', _this3.customer.name = '', _this3.customer.contact = '', _this3.customer.pickup_time = '';
-        console.log(_this3.order);
+        _this4.customer.id = '', _this4.customer.name = '', _this4.customer.contact = '', _this4.customer.pickup_time = '';
+        console.log(_this4.order);
       })["catch"](function (err) {
         return console.log(err);
-      });
-      this.storeToOrdersTable();
+      }); // this.storeToOrdersTable();
     },
     formatNumber: function formatNumber(fnumber) {
       var val = fnumber.toFixed(2);
@@ -2486,29 +2520,36 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkForm: function checkForm() {
       this.errors = [];
-      if (this.customer.name && this.customer.contact && this.customer.contact.length >= 9 && this.outlet) this.addCustomer();
+      if (this.customer.name && this.customer.contact && this.customer.contact.length >= 9 && this.outlet) // this.addCustomer();
+        return true;
 
       if (!this.customer.name) {
         this.errors.push('Name required');
+        return false;
       }
 
       if (!this.customer.contact) {
         this.errors.push('Contact Number required');
+        return false;
       } else if (this.customer.contact.length < 9) {
         this.errors.push('Invalid Phone Number');
-      } // if (!this.customer.pickup_time) {
-      //     this.errors.push('Pick Up Time required');
-      // }
+        return false;
+      }
 
+      if (!this.customer.pickup_time) {
+        this.errors.push('Pick Up Time required');
+        return false;
+      }
 
       if (!this.outlet) {
         this.errors.push('Select an outlet to pickup');
+        return false;
       }
     },
     removeCart: function removeCart(id) {
       localStorage.removeItem('carts');
-      window.open("http://bw.my/pdf", "_blank");
-      window.location.href = 'http://bw.my/cust';
+      if (window.open("http://bw.my/pdf", "_blank")) console.log("adc");
+      window.location.href = 'http://bw.my/';
     },
     getNow: function getNow() {
       var today = new Date();
@@ -2518,10 +2559,10 @@ __webpack_require__.r(__webpack_exports__);
       this.timestamp = dateTime;
       this.date = today + time;
     }
-  },
-  mounted: function mounted() {
-    this.date_function();
-  }
+  } // mounted () {
+  //   this.date_function()
+  // }
+
 });
 
 /***/ }),
@@ -39653,19 +39694,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-info mt-5",
-                staticStyle: { float: "right" },
-                on: {
-                  click: function($event) {
-                    return _vm.checkForm()
-                  }
-                }
-              },
-              [_vm._v("Checkout with FPX")]
-            )
+            _c("div", { ref: "paypal" })
           ]
         )
       ])

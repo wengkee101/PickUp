@@ -149,14 +149,14 @@
                 <select class="form-control" id="cats" name="cats_id" style = "width: 98%;margin-left: 1rem;" required>
                     <option disabled selected>Selected a Category</option>
                     @foreach($teacategories as $teacategory)
-                        <option value={{$teacategory->id}}>{{$teacategory->name}}</option>
+                        <option value={{$teacategory->id}} required>{{$teacategory->name}}</option>
                     @endforeach
                 </select>
             </div>
             <div style = "margin-top:40px;" class="form-group row">
                 <label for="nameid" class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-9">
-                    <input name="name" type="text" class="form-control" id="nameid" placeholder="Name" value = {{old('name')}}>
+                    <input name="name" type="text" class="form-control" id="nameid" placeholder="Name" value = "{{old('name')}}" required>
                 </div>
             </div>
 
@@ -164,7 +164,7 @@
             <div class="form-group row">
                     <label for="photos" class="col-sm-3 col-form-label">Image Upload</label>
                     <div class="custom-file">
-                        <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" >
+                        <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" required>
                         <label class="custom-file-label">Choose file</label>
                     </div>
             </div>
@@ -174,27 +174,27 @@
             <div class="form-group row">
                 <label for="descriptionid" class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-9">
-                    <textarea name="description" type="text" class="form-control" id="descriptionid" placeholder="Description"></textarea>
+                    <textarea name="description" type="text" class="form-control" id="descriptionid" placeholder="Description" required></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="priceid" class="col-sm-3 col-form-label">Price</label>
                 <div class="col-xs-2">
-                    <input name="price" type="text" class="form-control" id="priceid" placeholder="Price"  value="{{ old('price') }}">
+                    <input name="price" type="text" class="form-control" id="priceid" placeholder="Price"  value="{{ old('price') }}" required>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="rateid" class="col-sm-3 col-form-label">Rating</label>
                 <div class="col-xs-2">
-                    <input name="rate" type="number" class="form-control" id="rateid" placeholder="Rating" value="{{ old('rate') }}">
+                    <input name="rate" type="number" class="form-control" id="rateid" placeholder="Rating" value="{{ old('rate') }}" min="1" max="5" required>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="quantityid" class="col-sm-3 col-form-label">Quantity</label>
                 <div class="col-xs-2">
-                    <input name="quantity" type="number" class="form-control" id="quantityid" placeholder="Quantity" value="{{ old('quantity') }}">
+                    <input name="quantity" type="number" class="form-control" id="quantityid" placeholder="Quantity" value="{{ old('quantity') }}" min="0" required>
                 </div>
             </div>
 

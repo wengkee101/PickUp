@@ -58,7 +58,7 @@
                 <form style="width: 1000px" action="/search" method="GET">
                     {{ csrf_field() }}
                     <div style = "" class="input-group">
-                        <input type="search" class="form-control" name="q" placeholder="Search anything"> 
+                        <input type="search" class="form-control" name="q" placeholder=" "> 
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -73,7 +73,6 @@
         </div>
 
         <!--Search function-->
-        
         <br><br>
 
         <!--Display table of outlets-->

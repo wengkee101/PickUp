@@ -3,8 +3,40 @@
 @section('style')
 <style>
  .container{
-    background-color: white;
- }
+            background-color: #ffeaa7;
+            border-radius: 10px;
+        }
+
+        h1{
+            font-size: 7rem;
+        }
+        
+        .upside{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .topside {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem;
+        }
+
+        h4{
+            margin: 0;
+        }   
+
+        .leftside{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rightside img{
+            position: relative;
+            width: 150px;
+            right: 100px;
+        }
 </style>
 @endsection
 
@@ -12,31 +44,45 @@
 
     <div class="container pt-5">
 
-        <h1 style = "margin-left:50px;">Outlet Locations</h1>
-        <button class="btn btn-primary float-right"><a style = "color: white;" href="/outlets/create">Add Outlet</a></button>
-        <a style = "color:white;" href="/outlets" title="back to index table"><i class="fa fa-refresh btn btn-info float-right margin-right:50px;" style="font-size:18px;"> Refresh</i></a>
-        <br><br><br>
-
-        <!--Search function-->
-        <h4 style = "margin-left:50px;">Search for City</h4>
-        <form action="/search" method="GET">
-            {{ csrf_field() }}
-            <div style = "margin-left:50px; width:91%;" class="input-group">
-                <input type="search" class="form-control" name="q" placeholder="Search anything"> 
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
+        <div class="topside">
+            <div class="leftside">
+                <h1 style = "">Outlet Locations</h1>
+                <h4 style = "">Search</h4>
             </div>
-        </form>
+            <div class="rightside">
+                <img src="/image/shops.png" alt="shopes">
+            </div>
+        </div>
+
+        <div class="upside">
+            <div class="search">
+                <form style="width: 900px" action="/search" method="GET">
+                    {{ csrf_field() }}
+                    <div style = "" class="input-group">
+                        <input type="search" class="form-control" name="q" placeholder=" "> 
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="refresh">
+                <a style = "color:white;" href="/outlets" title="back to index table"><i class="fa fa-refresh btn btn-info float-right margin-right:50px;" style="font-size:18px;"> Refresh</i></a>
+            </div>
+            <div class="addoutlet">
+                <button class="btn btn-primary float-right" title="to add outlet"><a style = "color:white;" href="/outlets/create"> Add Outlet </a></button>
+            </div>
+        </div>
         <br><br>
 
         <!--Display table of outlets-->
         <div class="content">
+
         @if(count($outlets) > 0)
             <table class="table table-striped table-bordered">
-                <thead>
+                <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
                     <th>Name</th>
@@ -59,14 +105,15 @@
                             <td>{{$outlet->address}}</td>
                             <td>{{$outlet->city}}</td>
                             <td>{{$outlet->postcode}}</td>
-                            <td><a href="/outlets/{{$outlet->id}}/edit" class="btn btn-warning float-left" title="edit this outlet" >Edit</a></td>
+                            <td><a href="/outlets/{{$outlet->id}}/edit" class="btn btn-warning float-left" title="edit this outlet" >EDIT</a></td>
                             <td>
-                                <a onclick="sweetalertclick('{{$outlet->name}}', '{{$outlet->id}}')" class="btn btn-danger float-right" title="delete this outlet" id="deleteBtn">DELETE</a>
+                                <a onclick="sweetalertclick('{{$outlet->name}}', '{{$outlet->id}}')" style="color: white" class="btn btn-danger float-right" title="delete this outlet" id="deleteBtn">DELETE</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            <br>
         @else 
             <p>No results found</p>
         @endif       

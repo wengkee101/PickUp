@@ -272,6 +272,14 @@
   </script>
 @endsection
 
+@section('style')
+    <style>
+      .teaseries{
+        margin-top: .80rem;
+      }
+    </style>
+@endsection
+
 @section('content')
   <main>
     <header>
@@ -389,33 +397,33 @@
     </div>
     
     <div class = "teaseries">
-      <a href="#"><img class="pic2" src="/image/brown-sugar-series.jpg" alt=""></a>
-      <a href="#"><img class="pic3" src="/image/milk-tea-series.jpg" alt=""></a>
+      <img class="pic2" src="/image/brown-sugar-series.jpg" alt="">
+      <img class="pic3" src="/image/milk-tea-series.jpg" alt="">
+    </div>
+
+    <div class = "teaseries" style="margin-top: 1rem;">
+      <img class="pic4" src="/image/fruity-yogurt-series.jpg" alt="">
+      <img class="pic5" src="/image/dirty-series.jpg" alt="">
     </div>
 
     <div class = "teaseries">
-      <a href="#"><img class="pic4" src="/image/fruity-yogurt-series.jpg" alt=""></a>
-      <a href="#"><img class="pic5" src="/image/dirty-series.jpg" alt=""></a>
+      <img class="pic6" src="/image/whalcano-series.jpg" alt="">
+      <img class="pic7" src="/image/freshing-summer-series.jpg" alt="">
     </div>
 
     <div class = "teaseries">
-      <a href="#"><img class="pic6" src="/image/whalcano-series.jpg" alt=""></a>
-      <a href="#"><img class="pic7" src="/image/freshing-summer-series.jpg" alt=""></a>
+      <img class="pic8" src="/image/cheezo-series.jpg" alt="">
+      <img class="pic9" src="/image/snowy-tea-series.jpg" alt="">
     </div>
 
     <div class = "teaseries">
-      <a href="#"><img class="pic8" src="/image/cheezo-series.jpg" alt=""></a>
-      <a href="#"><img class="pic9" src="/image/snowy-tea-series.jpg" alt=""></a>
+      <img class="pic10" src="/image/dalgona-series.jpg" alt="">
+      <img class="pic11" src="/image/blackwhale-hotdrink-series.jpg" alt="">
     </div>
 
     <div class = "teaseries">
-      <a href="#"><img class="pic10" src="/image/dalgona-series.jpg" alt=""></a>
-      <a href="#"><img class="pic11" src="/image/blackwhale-hotdrink-series.jpg" alt=""></a>
-    </div>
-
-    <div class = "teaseries">
-      <a href="#"><img class="pic12" src="/image/blackwhale-specialities-icecream.png" alt=""></a>
-      <a href="#"><img class="pic13" src="/image/creme-brulee.png" alt=""></a>
+      <img class="pic12" src="/image/blackwhale-specialities-icecream.png" alt="">
+      <img class="pic13" src="/image/creme-brulee.png" alt="">
     </div>
 
     <div class="pic14">
@@ -501,7 +509,7 @@
     <div class="pic20">
       <div class="title-session">
         <img class="materials-selection" src="/image/latest-news.png" style="margin-left: 3rem;">
-        <a style="color:black;" href="/eventupdate">-Click on Here To View More Event Update-</a>
+        <a style="color:black;" href="/eventpage">-Click on Here To View More Event Update-</a>
       </div>
     </div>
 

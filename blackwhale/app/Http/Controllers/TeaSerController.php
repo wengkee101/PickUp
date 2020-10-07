@@ -53,10 +53,13 @@ class TeaSerController extends Controller
     {
         //validation
         $validator = Validator::make($request->all(), [
+            'cats_id' => 'required', 
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
             'image' => 'mimes:jpeg,jpg,png,gif,psd|required',
+            'quantity' => 'required|numeric|min:1',
+            'rate' => 'required|integer|min:1|digits_between: 1,5'
         ]);
 
         if ($validator->fails()) {
@@ -71,6 +74,8 @@ class TeaSerController extends Controller
         $teaserie->name = $request->input('name');
         $teaserie->description = $request->input('description');
         $teaserie->price = $request->input('price');
+        $teaserie->quantity = $request->input('quantity');
+        $teaserie->rate = $request->input('rate');
 
         if($request->hasfile('image')) {
 
@@ -132,11 +137,14 @@ class TeaSerController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric|min:1',
+            'rate' => 'required|integer|min:1|digits_between: 1,5'
         ]);
 
         if ($validator->fails()) {
             toast($validator->messages()->all()[0], 'error');
+            
             return back();
         }
 
@@ -146,6 +154,8 @@ class TeaSerController extends Controller
         $teaserie->name = $request->input('name');
         $teaserie->description = $request->input('description');
         $teaserie->price = $request->input('price');
+        $teaserie->quantity = $request->input('quantity');
+        $teaserie->rate = $request->input('rate');
         
         if($request->hasfile('image')) {
 

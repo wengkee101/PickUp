@@ -57,11 +57,6 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a href="/login" class="nav-link">
-          <i class="fas fa-sign-in-alt">
-          </i><span class="link-text">Sign In</span>
-        </a>
-      </li>
+
     </ul>
   </nav>

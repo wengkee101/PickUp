@@ -57,7 +57,7 @@
             <div class="form-group row">
                 <label for="nameid" class="col-sm-3 col-form-label">Series Name</label>
                 <div class="col-sm-9">
-                    <input name="name" type="text" class="form-control" id="nameid" placeholder="Name" value="{{$teaserie->name}}">
+                    <input name="name" type="text" class="form-control" id="nameid" placeholder="Name" value="{{$teaserie->name}}" required>
                 </div>
             </div>
 
@@ -66,7 +66,7 @@
             <div class="form-group row">
                 <label for="photos" class="col-sm-3 col-form-label">Image Upload</label>
                 <div class="custom-file">
-                <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" >
+                <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" required>
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>
@@ -78,14 +78,14 @@
             <div class="form-group row">
                 <label for="descriptionid" class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-9">
-                    <textarea name="description" type="text" class="form-control" id="descriptionid" placeholder="Description" rows="5" cols="50">{{$teaserie->description}}</textarea>
+                    <textarea name="description" type="text" class="form-control" id="descriptionid" placeholder="Description" rows="5" cols="50" required>{{$teaserie->description}}</textarea>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="priceid" class="col-sm-3 col-form-label">Price (RM)</label>
                 <div class="col-xs-2">
-                    <input name="price" type="text" class="form-control" id="priceid" placeholder="Price" value="{{number_format($teaserie->price, 2)}}">
+                    <input name="price" type="text" class="form-control" id="priceid" placeholder="Price" value="{{number_format($teaserie->price, 2)}}" required>
                 </div>
             </div>
             <br>
@@ -93,14 +93,14 @@
             <div class="form-group row">
                 <label for="rateid" class="col-sm-3 col-form-label">Rating</label>
                 <div class="col-xs-2">
-                    <input name="rate" type="number" class="form-control" id="rateid" placeholder="Rating" value="{{$teaserie->rate}}">
+                    <input name="rate" type="number" class="form-control" id="rateid" placeholder="Rating" value="{{$teaserie->rate}}" min="1" max="5" required>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="quantityid" class="col-sm-3 col-form-label">Quantity</label>
                 <div class="col-xs-2">
-                    <input name="quantity" type="number" class="form-control" id="quantityid" placeholder="Quantity" value="{{$teaserie->quantity}}">
+                    <input name="quantity" type="number" class="form-control" id="quantityid" placeholder="Quantity" value="{{$teaserie->quantity}}" min="0" required>
                 </div>
             </div>
             <div class="form-group row">

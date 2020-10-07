@@ -128,10 +128,10 @@
         <div class="team">
             <div class="container py-1 text-center">
                 <div class="row mb-5">
-                    <div class="col">
+                    <div class="col m-3">
                         <h1>Our Team</h1>
                         <p class="mt-3">
-                            Laravel: BWSSPUP (Black Whale Self- Service Pick-Up Portal)
+                            Laravel: Black Whale Self- Service Pick-Up Portal
                         </p>
                     </div>
                 </div>
@@ -197,7 +197,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <img src="/profile/khew.jpg" alt="person A" class="img-fluid rounded-circle w-50 mb-3">
+                                <img src="/profile/khew.jpeg" alt="person A" class="img-fluid rounded-circle w-50 mb-3">
                                 <h4>Khew Jia Peng</h4>
                                 <h5>Back-end Programmer</h5>
                                 <p>responsible for building the databases and

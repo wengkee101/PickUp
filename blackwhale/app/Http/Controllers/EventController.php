@@ -52,7 +52,7 @@ class EventController extends Controller
 
     public function display(){
         //$events = Event::all();
-        $events = Event::orderBy('created_at','desc')->paginate(5);
+        $events = Event::orderBy('date','desc')->paginate(10);
 
         if (session('success_message')){ 
             Alert::success('Success', session('success_message'));

@@ -107,7 +107,7 @@
 
                         @if($invoice->seller->phone)
                             <p class="seller-phone">
-                                {{ __('invoices::invoice.phone') }}: {{ str_pad($invoice->seller->phone, 11, "0", STR_PAD_LEFT) }}
+                                {{ __('invoices::invoice.phone') }}: {{ str_pad($invoice->seller->phone, 10, "0", STR_PAD_LEFT) }}
                             </p>
                         @endif
 
@@ -145,7 +145,7 @@
 
                         @if($invoice->buyer->phone)
                             <p class="buyer-phone">
-                                {{ __('invoices::invoice.phone') }}: {{ str_pad($invoice->buyer->phone, 11, "0", STR_PAD_LEFT) }}
+                                {{ __('invoices::invoice.phone') }}: {{ str_pad($invoice->buyer->phone, 10, "0", STR_PAD_LEFT) }}
                             </p>
                         @endif
 

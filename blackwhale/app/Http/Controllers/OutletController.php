@@ -147,7 +147,7 @@ class OutletController extends Controller
         
         $outlet->save();
         
-        alert('Edited Success', $teaserie->name." edited", 'success');
+        alert('Edited Success', $outlet->name." edited", 'success');
         return redirect('/outlets');
     }
 
@@ -163,7 +163,7 @@ class OutletController extends Controller
 
         $outlet->delete($outlet->id);
 
-        alert('Delete Success',$teaserie->name." deleted", 'success');
+        alert('Delete Success',$outlet->name." deleted", 'success');
         return redirect('/outlets');
     }
 

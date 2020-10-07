@@ -57,7 +57,7 @@
                         <img src="{{ asset('/storage/upload\menu/' . $teaserie->image) }}" alt="{{$teaserie->name}}"  width="150px" height="150px"><br><br>
                     </div>
                     <a href="/teaser/{{$teaserie->id}}/edit" class="btn btn-warning">Edit Menu Series</a>
-                    <a onclick="sweetalertclick('{{$teaserie->name}}', '{{$teaserie->id}}')" class="btn btn-danger">Delete Menu Series</a>
+                    <a onclick="sweetalertclick('{{$teaserie->name}}', '{{$teaserie->id}}')" class="btn btn-danger" style="color: white">Delete Menu Series</a>
                 </div>
                 <div class="pl-4">
                     <div>
@@ -72,10 +72,9 @@
 
                     <div>
                         <h4>Rating</h4>
-                        @for($i = 0; $i <= $teaserie->rate; $i++)
+                        @for($i = 1; $i <= $teaserie->rate; $i++)
                             <i class="fa fa-star" style="font-size: 24px;color:#eed555"></i>
                         @endfor
-                        <p style="display:inline;">{{$teaserie->rate}}</p>
                     </div>
                     <br>
                     <div>

@@ -31,6 +31,10 @@
         text-decoration: none;
         color: black;
     }
+
+    .desc{
+        white-space: pre;
+    }
 </style>
 @endsection
 
@@ -50,18 +54,19 @@
             <div class="jumbotron" style="padding-left: 2rem">
                 @foreach ($events as $event)
                 <h2>{{$event->title}}</h2>
-                <div class="date">Date: {{$event->date}}</div>
+                <div class="date">Date: {{$event->date}}</div><br>
                 <div class="pic" style="text-align: center;">
                     <img src="{{ asset('/storage/upload\eventupdate/' . $event->image) }}" alt="Image" width="60%" height="50%" style="border-radius: 10px">
+                </div><br>
+                <hr>
+                <div class="content" style="padding-left: 50px; padding-right:50px"><br>
+                    Description:<br><br>
+                    <div class="desc">{{$event->content}}</div><br>
+                    <hr><br>Link Description:<br><br>
+                    <a href="https://www.facebook.com/theblackwhaletea/">https://www.facebook.com/theblackwhaletea/</a><br><br>
                 </div>
                 <hr>
-                <div class="content" style="padding-left: 50px; padding-right:50px">
-                    Description:<br>
-                    {{$event->content}}
-                    <hr>Link Description:<br>
-                    <a href="https://www.facebook.com/theblackwhaletea/">https://www.facebook.com/theblackwhaletea/</a>
-                </div>
-                <hr>
+                <br>
                 @endforeach
                 {{$events->links()}}
             </div>

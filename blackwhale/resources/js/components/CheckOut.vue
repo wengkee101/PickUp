@@ -90,8 +90,8 @@
                         </form>
                     </div>
                         
-                    <button class="btn btn-info mt-5" style="float:right" @click="checkForm()">Checkout with FPX</button>
-
+                    <!-- <button class="btn btn-info mt-5" style="float:right" @click="checkForm()">Checkout with FPX</button> -->
+                    <div ref="paypal"></div>
                 </div>
                        
             </div>
@@ -168,12 +168,52 @@ export default{
             date:''
         }
     },
+    
+    mounted: function(){
+        const script = document.createElement("script");
+        script.src = "https://www.paypal.com/sdk/js?client-id=AcLvmayIWHe4njViaZ80b_Fyw0VWFvEt3_Hqh3T-ZYghmS31L_236ccB_Ez8MwUBQtKT7kRBON5jvmxl&currency=MYR";
+        script.addEventListener("load", this.setLoaded);
+        document.body.appendChild(script);
+    },
+
     created(){
         this.viewCart();
         this.viewOutlet();
         setInterval(this.getNow, 1000);
     },
+
+    
+
     methods:{
+        setLoaded: function(){
+            // console.log("Hello");
+            window.paypal.Buttons({
+                createOrder: (data, actions) => {
+                    // This function sets up the details of the transaction, including the amount and line item details.
+                    return actions.order.create({
+                      purchase_units: [{
+                        amount: {
+                          currecy_code: "MYR",
+                          value: this.total
+                        }
+                      }]
+                    });
+                  },
+                  onApprove: (data, actions) => {
+                        if(this.checkForm()){
+                            this.addCustomer();
+                            this.storeToOrdersTable();
+
+
+
+                            return actions.order.capture().then(function(details){
+                                alert('Transaction Completed By ' + details.payer.name.given_name);
+                            });
+                        }
+                  },
+                }).render(this.$refs.paypal);
+        },
+
         date_function: function () {
 
             var currentDate = new Date();
@@ -252,7 +292,7 @@ export default{
                 console.log(this.order);
             })
             .catch(err => console.log(err));
-            this.storeToOrdersTable();
+            // this.storeToOrdersTable();
         },
         formatNumber(fnumber){
             let val = fnumber.toFixed(2);
@@ -265,32 +305,39 @@ export default{
             this.errors = [];
 
             if(this.customer.name && this.customer.contact && this.customer.contact.length >= 9 && this.outlet)
-                this.addCustomer();
+                // this.addCustomer();
+                return true;
 
             if (!this.customer.name) {
                 this.errors.push('Name required');
+                return false;
             }
 
             if (!this.customer.contact) {
                 this.errors.push('Contact Number required');
+                return false;
             }
             else if (this.customer.contact.length < 9) {
                 this.errors.push('Invalid Phone Number');
+                return false;
             }
 
-            // if (!this.customer.pickup_time) {
-            //     this.errors.push('Pick Up Time required');
-            // }
+            if (!this.customer.pickup_time) {
+                this.errors.push('Pick Up Time required');
+                return false;
+            }
 
             if (!this.outlet) {
                 this.errors.push('Select an outlet to pickup');
+                return false;
             }
             
         },
         removeCart(id){
             localStorage.removeItem('carts');
-            window.open(`http://bw.my/pdf`, "_blank");
-            window.location.href = 'http://bw.my/cust';
+            if (window.open(`http://bw.my/pdf`, "_blank"))
+            console.log("adc");
+            window.location.href = 'http://bw.my/';
         },
         getNow() {
             const today = new Date();
@@ -302,8 +349,8 @@ export default{
         }
     },
 
-    mounted () {
-      this.date_function()
-    }
+    // mounted () {
+    //   this.date_function()
+    // }
 }
 </script>

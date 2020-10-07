@@ -8,12 +8,14 @@
     <link href="/css/slick.css" rel="stylesheet" type="text/css" />
     <link href="/css/slick-theme.css" rel="stylesheet" type="text/css" />
 
+    <link rel="icon" href="/storage/upload/menu/74831-200.ico">
 
     @yield('link')
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/view.css">
     @yield('style')
 
+    <title>Black Whale</title>
 
     @yield('script')
     
